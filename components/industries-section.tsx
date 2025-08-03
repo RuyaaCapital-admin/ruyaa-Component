@@ -111,14 +111,19 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
             </motion.h2>
             <motion.p
               className={cn(
-                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12",
+                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative",
                 isDark ? "text-gray-300" : "text-gray-600",
               )}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Smart solutions for every business, in every industry, everywhere
+              <span className="highlighted-tagline">
+                Smart solutions for{" "}
+                <span className="sector-highlight">every business</span>, in{" "}
+                <span className="sector-highlight">every industry</span>,{" "}
+                <span className="sector-highlight">everywhere</span>
+              </span>
             </motion.p>
 
             {/* Glass Cards */}
