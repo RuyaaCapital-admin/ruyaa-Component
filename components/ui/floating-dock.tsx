@@ -5,7 +5,7 @@ import type React from "react"
 import { cn } from "@/lib/utils"
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react"
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 export const FloatingDock = ({
   items,
@@ -23,10 +23,32 @@ export const FloatingDock = ({
   mobileClassName?: string
   isDark: boolean
 }) => {
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      if (currentScrollY < lastScrollY || currentScrollY < 100) {
+        // Scrolling up or near top
+        setIsVisible(true)
+      } else {
+        // Scrolling down
+        setIsVisible(false)
+      }
+
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   return (
     <>
-      <FloatingDockDesktop items={items} className={desktopClassName} isDark={isDark} />
-      <FloatingDockMobile items={items} className={mobileClassName} isDark={isDark} />
+      <FloatingDockDesktop items={items} className={desktopClassName} isDark={isDark} isVisible={isVisible} />
+      <FloatingDockMobile items={items} className={mobileClassName} isDark={isDark} isVisible={isVisible} />
     </>
   )
 }
@@ -35,6 +57,7 @@ const FloatingDockMobile = ({
   items,
   className,
   isDark,
+  isVisible,
 }: {
   items: {
     title: string
@@ -44,10 +67,19 @@ const FloatingDockMobile = ({
   }[]
   className?: string
   isDark: boolean
+  isVisible: boolean
 }) => {
   const [open, setOpen] = useState(false)
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <motion.div
+      className={cn("relative block md:hidden", className)}
+      initial={{ y: 0, opacity: 1 }}
+      animate={{
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
       <AnimatePresence>
         {open && (
           <motion.div layoutId="nav" className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2">
@@ -105,7 +137,7 @@ const FloatingDockMobile = ({
       >
         <IconLayoutNavbarCollapse className={cn("h-5 w-5", isDark ? "text-neutral-400" : "text-gray-500")} />
       </button>
-    </div>
+    </motion.div>
   )
 }
 
@@ -113,6 +145,7 @@ const FloatingDockDesktop = ({
   items,
   className,
   isDark,
+  isVisible,
 }: {
   items: {
     title: string
@@ -122,6 +155,7 @@ const FloatingDockDesktop = ({
   }[]
   className?: string
   isDark: boolean
+  isVisible: boolean
 }) => {
   const mouseX = useMotionValue(Number.POSITIVE_INFINITY)
   return (
@@ -133,6 +167,12 @@ const FloatingDockDesktop = ({
         isDark ? "bg-neutral-900" : "bg-gray-50",
         className,
       )}
+      initial={{ y: 0, opacity: 1 }}
+      animate={{
+        y: isVisible ? 0 : -100,
+        opacity: isVisible ? 1 : 0
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} isDark={isDark} />

@@ -135,7 +135,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
         </div>
 
         {/* Enhanced Tagline */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
@@ -156,37 +156,10 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
             transition={{ duration: 1, delay: 3.5 }}
             className={cn("absolute bottom-0 left-0 h-0.5 opacity-50", isDark ? "bg-blue-400" : "bg-blue-500")}
           />
-        </motion.p>
+        </motion.div>
       </div>
 
-      <motion.div
-        className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-8 md:mt-10"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 3 }}
-      >
-        <Button
-          className={cn(
-            "w-40 h-10 rounded-xl border font-normal text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg",
-            isDark
-              ? "bg-white text-black border-white hover:bg-gray-100"
-              : "bg-black text-white border-black hover:bg-gray-800",
-          )}
-        >
-          Contact Us
-        </Button>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-40 h-10 rounded-xl text-sm font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg",
-            isDark
-              ? "border-white text-white hover:bg-white hover:text-black"
-              : "border-black text-black hover:bg-black hover:text-white",
-          )}
-        >
-          Explore More
-        </Button>
-      </motion.div>
+
     </div>
   )
 }
@@ -215,7 +188,7 @@ export const ProductCard = ({
       key={product.title}
       className="group/product h-96 w-[30rem] relative shrink-0"
     >
-      <a href={product.link} className="block group-hover/product:shadow-2xl">
+      <div className="block group-hover/product:shadow-2xl">
         <img
           src={product.thumbnail || "/placeholder.svg"}
           height="600"
@@ -223,7 +196,7 @@ export const ProductCard = ({
           className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
           alt={product.title}
         />
-      </a>
+      </div>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none rounded-lg"></div>
       <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
         {product.title}

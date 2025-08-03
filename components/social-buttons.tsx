@@ -1,195 +1,214 @@
 "use client"
-import { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ChevronLeft } from "lucide-react"
+import styled from 'styled-components'
 
 interface SocialButtonsProps {
   isDark: boolean
 }
 
-interface ClickAnalytics {
-  platform: string
-  timestamp: number
-  sessionId: string
-  userAgent: string
-  referrer: string
+const Card = () => {
+  return (
+    <StyledWrapper>
+      <div className="card">
+        <ul>
+          <li className="iso-pro">
+            <span />
+            <span />
+            <span />
+            <a href="https://facebook.com/ruyaacapital" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg" className="svg">
+                <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
+              </svg>
+            </a>
+            <div className="text">Facebook</div>
+          </li>
+          <li className="iso-pro">
+            <span />
+            <span />
+            <span />
+            <a href="https://twitter.com/ruyaacapital" target="_blank" rel="noopener noreferrer">
+              <svg className="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
+              </svg>
+            </a>
+            <div className="text">Twitter</div>
+          </li>
+          <li className="iso-pro">
+            <span />
+            <span />
+            <span />
+            <a href="https://instagram.com/ruyaacapital" target="_blank" rel="noopener noreferrer">
+              <svg className="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+              </svg>
+            </a>
+            <div className="text">Instagram</div>
+          </li>
+        </ul>
+      </div>
+    </StyledWrapper>
+  )
 }
 
-interface AnalyticsData {
-  totalClicks: number
-  platformStats: Record<string, number>
-  clickHistory: ClickAnalytics[]
-  lastUpdated: number
-}
+const StyledWrapper = styled.div`
+  .card {
+    max-width: fit-content;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.192),
+      inset 0 0 5px rgba(255, 255, 255, 0.274), 0 5px 5px rgba(0, 0, 0, 0.164);
+    transition: 0.5s;
+  }
+
+  .card:hover {
+    animation: ease-out 5s;
+    background: rgba(173, 173, 173, 0.05);
+  }
+
+  .card ul {
+    padding: 1rem;
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .card ul li {
+    cursor: pointer;
+  }
+
+  .svg {
+    transition: all 0.3s;
+    padding: 1rem;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    color: rgb(255, 174, 0);
+    fill: currentColor;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
+      inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.164);
+  }
+
+  .text {
+    opacity: 0;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 0.3s;
+    color: rgb(255, 174, 0);
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    z-index: 9999;
+    box-shadow: -5px 0 1px rgba(153, 153, 153, 0.2),
+      -10px 0 1px rgba(153, 153, 153, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.3),
+      inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.082);
+  }
+
+  /*isometric projection*/
+  .iso-pro {
+    transition: 0.5s;
+  }
+  .iso-pro:hover a > .svg {
+    transform: translate(15px, -15px);
+    border-radius: 100%;
+  }
+
+  .iso-pro:hover .text {
+    opacity: 1;
+    transform: translate(25px, -2px) skew(-5deg);
+  }
+
+  .iso-pro:hover .svg {
+    transform: translate(5px, -5px);
+  }
+
+  .iso-pro span {
+    opacity: 0;
+    position: absolute;
+    color: #1877f2;
+    border-color: #1877f2;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
+      inset 0 0 5px rgba(255, 255, 255, 0.5), 0 5px 5px rgba(0, 0, 0, 0.164);
+    border-radius: 50%;
+    transition: all 0.3s;
+    height: 60px;
+    width: 60px;
+  }
+
+  .iso-pro:hover span {
+    opacity: 1;
+  }
+
+  .iso-pro:hover span:nth-child(1) {
+    opacity: 0.2;
+  }
+
+  .iso-pro:hover span:nth-child(2) {
+    opacity: 0.4;
+    transform: translate(5px, -5px);
+  }
+
+  .iso-pro:hover span:nth-child(3) {
+    opacity: 0.6;
+    transform: translate(10px, -10px);
+  }
+`
 
 export default function SocialButtons({ isDark }: SocialButtonsProps) {
   const [isExpanded, setIsExpanded] = useState(false)
-  const [analytics, setAnalytics] = useState<AnalyticsData>({
-    totalClicks: 0,
-    platformStats: {},
-    clickHistory: [],
-    lastUpdated: Date.now(),
-  })
-
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const [sessionId] = useState(() => {
-    // Generate unique session ID
-    return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-  })
-
   // Auto-collapse functionality
   const resetAutoCollapseTimer = () => {
-    // Clear existing timer
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
 
-    // Set new timer only if expanded
     if (isExpanded) {
       timeoutRef.current = setTimeout(() => {
         setIsExpanded(false)
-      }, 5000) // 5 seconds
+      }, 5000)
     }
   }
 
-  // Handle mouse enter - reset timer
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-  }
-
-  // Handle mouse leave - start timer
-  const handleMouseLeave = () => {
-    resetAutoCollapseTimer()
-  }
-
-  // Reset timer when expanded state changes
+  // Handle clicks outside to close
   useEffect(() => {
-    if (isExpanded) {
-      resetAutoCollapseTimer()
-    } else {
-      // Clear timer when collapsed
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsExpanded(false)
       }
     }
 
-    // Cleanup on unmount
+    if (isExpanded) {
+      document.addEventListener("mousedown", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isExpanded])
+
+  useEffect(() => {
+    resetAutoCollapseTimer()
+
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
       }
     }
   }, [isExpanded])
-
-  // Load analytics from localStorage on component mount
-  useEffect(() => {
-    const savedAnalytics = localStorage.getItem("socialButtonAnalytics")
-    if (savedAnalytics) {
-      try {
-        const parsed = JSON.parse(savedAnalytics)
-        setAnalytics(parsed)
-      } catch (error) {
-        console.error("Error loading analytics:", error)
-      }
-    }
-  }, [])
-
-  // Save analytics to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("socialButtonAnalytics", JSON.stringify(analytics))
-  }, [analytics])
-
-  const trackClick = (platform: string, url: string) => {
-    const clickData: ClickAnalytics = {
-      platform,
-      timestamp: Date.now(),
-      sessionId,
-      userAgent: navigator.userAgent,
-      referrer: document.referrer || "direct",
-    }
-
-    setAnalytics((prev) => ({
-      totalClicks: prev.totalClicks + 1,
-      platformStats: {
-        ...prev.platformStats,
-        [platform]: (prev.platformStats[platform] || 0) + 1,
-      },
-      clickHistory: [...prev.clickHistory, clickData].slice(-100), // Keep last 100 clicks
-      lastUpdated: Date.now(),
-    }))
-
-    // Send analytics to console for debugging (replace with your analytics service)
-    console.log("🔍 Social Media Click Analytics:", {
-      platform,
-      clickData,
-      totalClicks: analytics.totalClicks + 1,
-      platformStats: {
-        ...analytics.platformStats,
-        [platform]: (analytics.platformStats[platform] || 0) + 1,
-      },
-    })
-
-    // Optional: Send to external analytics service
-    sendToAnalyticsService(clickData)
-
-    // Reset auto-collapse timer after click
-    resetAutoCollapseTimer()
-
-    // Open the social media link
-    window.open(url, "_blank", "noopener,noreferrer")
-  }
-
-  const sendToAnalyticsService = async (clickData: ClickAnalytics) => {
-    try {
-      // Example: Send to Google Analytics, Mixpanel, or your custom analytics endpoint
-      // Replace this with your actual analytics service
-
-      // Google Analytics 4 example (if you have gtag loaded)
-      if (typeof window !== "undefined" && (window as any).gtag) {
-        ;(window as any).gtag("event", "social_media_click", {
-          platform: clickData.platform,
-          session_id: clickData.sessionId,
-          timestamp: clickData.timestamp,
-        })
-      }
-
-      // Custom analytics endpoint example
-      // await fetch('/api/analytics/social-clicks', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(clickData)
-      // })
-
-      console.log("📊 Analytics sent successfully:", clickData.platform)
-    } catch (error) {
-      console.error("❌ Failed to send analytics:", error)
-    }
-  }
-
-  const getClickPercentage = (platform: string) => {
-    if (analytics.totalClicks === 0) return 0
-    return Math.round(((analytics.platformStats[platform] || 0) / analytics.totalClicks) * 100)
-  }
-
-  const getMostPopularPlatform = () => {
-    if (analytics.totalClicks === 0) return "None"
-    return Object.entries(analytics.platformStats).reduce((a, b) => (a[1] > b[1] ? a : b))[0]
-  }
-
-  // Analytics Dashboard (for development - remove in production)
-  const showAnalyticsDashboard = () => {
-    console.log("📈 Social Media Analytics Dashboard:", {
-      totalClicks: analytics.totalClicks,
-      platformBreakdown: analytics.platformStats,
-      mostPopular: getMostPopularPlatform(),
-      recentClicks: analytics.clickHistory.slice(-5),
-      sessionId,
-    })
-  }
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded)
@@ -199,143 +218,53 @@ export default function SocialButtons({ isDark }: SocialButtonsProps) {
     <>
       <div
         ref={containerRef}
-        className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        className={`fixed right-4 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-300 ${
+          isExpanded ? "translate-x-0" : "translate-x-[calc(100%-48px)]"
+        }`}
+        onMouseEnter={() => {
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+          }
+        }}
+        onMouseLeave={resetAutoCollapseTimer}
       >
-        {/* Toggle Arrow Button - Only visible element when collapsed */}
+        {/* Smaller Toggle Button */}
         <motion.button
           onClick={handleToggle}
-          className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-l-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 text-white border border-gray-600"
+          style={{
+            backgroundColor: "rgba(35, 35, 35, 1)",
+            backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2Fe250d0609d1b46c5937b655762b8eb50)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-            <ChevronLeft className="w-4 h-4 text-black" />
+          <motion.div
+            animate={{ rotate: isExpanded ? 0 : 180 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronLeft className="h-4 w-4" />
           </motion.div>
         </motion.button>
 
-        {/* Social Media Buttons - Slide in from right when expanded */}
+        {/* New Styled Social Media Card */}
         <AnimatePresence>
           {isExpanded && (
             <motion.div
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: -60, opacity: 1 }}
-              exit={{ x: 100, opacity: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 30,
-              }}
-              className="absolute top-0"
+              initial={{ opacity: 0, x: 20, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 20, scale: 0.9 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+              className="ml-10"
             >
-              <ul className="flex flex-col space-y-3 list-none">
-                <li className="relative group">
-                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                    <div className="bg-green-600 text-white px-3 py-2 rounded-md text-sm whitespace-nowrap flex items-center gap-2">
-                      WhatsApp
-                      {analytics.platformStats.whatsapp && (
-                        <span className="bg-green-800 px-2 py-1 rounded-full text-xs">
-                          {analytics.platformStats.whatsapp}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => trackClick("whatsapp", "https://wa.me/your-number")}
-                    data-social="whatsapp"
-                    className="relative overflow-hidden flex justify-center items-center w-12 h-12 rounded-full text-gray-600 bg-white transition-all duration-300 ease-in-out hover:text-white hover:shadow-lg group"
-                  >
-                    <div className="absolute bottom-0 left-0 w-full h-0 bg-green-600 transition-all duration-300 ease-in-out group-hover:h-full"></div>
-                    <svg className="relative z-10 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
-                    </svg>
-                  </button>
-                </li>
-
-                <li className="relative group">
-                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                    <div className="bg-blue-600 text-white px-3 py-2 rounded-md text-sm whitespace-nowrap flex items-center gap-2">
-                      Facebook
-                      {analytics.platformStats.facebook && (
-                        <span className="bg-blue-800 px-2 py-1 rounded-full text-xs">
-                          {analytics.platformStats.facebook}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => trackClick("facebook", "https://facebook.com/your-page")}
-                    data-social="facebook"
-                    className="relative overflow-hidden flex justify-center items-center w-12 h-12 rounded-full text-gray-600 bg-white transition-all duration-300 ease-in-out hover:text-white hover:shadow-lg group"
-                  >
-                    <div className="absolute bottom-0 left-0 w-full h-0 bg-blue-600 transition-all duration-300 ease-in-out group-hover:h-full"></div>
-                    <svg className="relative z-10 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                    </svg>
-                  </button>
-                </li>
-
-                <li className="relative group">
-                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white px-3 py-2 rounded-md text-sm whitespace-nowrap flex items-center gap-2">
-                      Instagram
-                      {analytics.platformStats.instagram && (
-                        <span className="bg-black/30 px-2 py-1 rounded-full text-xs">
-                          {analytics.platformStats.instagram}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => trackClick("instagram", "https://instagram.com/your-profile")}
-                    data-social="instagram"
-                    className="relative overflow-hidden flex justify-center items-center w-12 h-12 rounded-full text-gray-600 bg-white transition-all duration-300 ease-in-out hover:text-white hover:shadow-lg group"
-                  >
-                    <div className="absolute bottom-0 left-0 w-full h-0 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 transition-all duration-300 ease-in-out group-hover:h-full"></div>
-                    <svg className="relative z-10 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </button>
-                </li>
-
-                <li className="relative group">
-                  <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
-                    <div className="bg-red-600 text-white px-3 py-2 rounded-md text-sm whitespace-nowrap flex items-center gap-2">
-                      YouTube
-                      {analytics.platformStats.youtube && (
-                        <span className="bg-red-800 px-2 py-1 rounded-full text-xs">
-                          {analytics.platformStats.youtube}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => trackClick("youtube", "https://youtube.com/your-channel")}
-                    data-social="youtube"
-                    className="relative overflow-hidden flex justify-center items-center w-12 h-12 rounded-full text-gray-600 bg-white transition-all duration-300 ease-in-out hover:text-white hover:shadow-lg group"
-                  >
-                    <div className="absolute bottom-0 left-0 w-full h-0 bg-red-600 transition-all duration-300 ease-in-out group-hover:h-full"></div>
-                    <svg className="relative z-10 w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                    </svg>
-                  </button>
-                </li>
-              </ul>
+              <Card />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-
-      {/* Analytics Dashboard Button (Development Only - Remove in Production) */}
-      {process.env.NODE_ENV === "development" && (
-        <button
-          onClick={showAnalyticsDashboard}
-          className="fixed bottom-4 right-4 bg-blue-600 text-white px-3 py-2 rounded-md text-xs hover:bg-blue-700 transition-colors z-40"
-        >
-          📊 Analytics ({analytics.totalClicks})
-        </button>
-      )}
     </>
   )
 }

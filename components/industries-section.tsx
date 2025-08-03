@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 import { FlipWords } from "@/components/ui/flip-words" // Import FlipWords
+import GlassCards from "./glass-cards"
 
 interface Industry {
   id: string
@@ -120,6 +121,16 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
               Smart solutions for every business, in every industry, everywhere
             </motion.p>
 
+            {/* Glass Cards */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mb-8 md:mb-12"
+            >
+              <GlassCards />
+            </motion.div>
+
             {/* Custom Button */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -130,18 +141,6 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
               <button className="custom-button">
                 <div className="fx"></div>
                 <div className="fx bottom"></div>
-                <div className="content">
-                  <span>Get Started</span>
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M5 12H19M19 12L12 5M19 12L12 19"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
               </button>
             </motion.div>
           </motion.div>
