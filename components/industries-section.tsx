@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 import { FlipWords } from "@/components/ui/flip-words" // Import FlipWords
+import GlassCards from "./glass-cards"
 
 interface Industry {
   id: string
