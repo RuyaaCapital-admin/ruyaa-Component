@@ -58,6 +58,21 @@ const GlassCards = () => {
           margin: 0 -45px;
           backdrop-filter: blur(10px);
           transform: rotate(var(--r));
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+        }
+
+        .glass-card.clinics-medical {
+          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F295dbea9e9c0481d87036f48d1d04e62?format=webp&width=800');
+        }
+
+        .glass-card.smart-education {
+          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F002c9a6551674059a6daaa71ae10742f?format=webp&width=800');
+        }
+
+        .glass-card.financial-services {
+          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F9925e7c323a843c786955ba53cb7d52c?format=webp&width=800');
         }
 
         .glass-cards-wrapper:hover .glass-card {
