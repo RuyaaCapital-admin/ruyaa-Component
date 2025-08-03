@@ -6,13 +6,25 @@ const GlassCards = () => {
   return (
     <StyledWrapper>
       <div className="container">
-        <div data-text="Clinics & Medical" style={{ '--r': -15 } as React.CSSProperties} className="glass">
+        <div
+          data-text="Clinics & Medical"
+          style={{ '--r': '-15' } as React.CSSProperties}
+          className="glass"
+        >
           {/* Removed SVG icon as requested */}
         </div>
-        <div data-text="Smart Education" style={{ '--r': 5 } as React.CSSProperties} className="glass">
+        <div
+          data-text="Smart Education"
+          style={{ '--r': '5' } as React.CSSProperties}
+          className="glass"
+        >
           {/* Removed SVG icon as requested */}
         </div>
-        <div data-text="Financial Services" style={{ '--r': 25 } as React.CSSProperties} className="glass">
+        <div
+          data-text="Financial Services"
+          style={{ '--r': '25' } as React.CSSProperties}
+          className="glass"
+        >
           {/* Removed SVG icon as requested */}
         </div>
       </div>
