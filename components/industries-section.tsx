@@ -122,14 +122,14 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
             </motion.p>
 
             {/* Glass Cards */}
-            {/* <motion.div
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="mb-8 md:mb-12"
             >
               <GlassCards />
-            </motion.div> */}
+            </motion.div>
 
             {/* Custom Button */}
             <motion.div
