@@ -75,10 +75,10 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const words = [
-    "AI For Clinics & Medical Centers",
-    "it works with Websites & Online Businesses",
-    "we serve Financial Services & Smart Investing",
-    "AI For Smart Education & Training Sector",
+    '<span class="highlight-phrase">AI For</span> Clinics & Medical Centers',
+    '<span class="highlight-phrase">it works</span> with Websites & Online Businesses',
+    '<span class="highlight-phrase">we serve</span> Financial Services & Smart Investing',
+    '<span class="highlight-phrase">AI For</span> Smart Education & Training Sector',
   ]
 
   return (
