@@ -231,11 +231,14 @@ export default function SocialButtons({ isDark }: SocialButtonsProps) {
         {/* Smaller Toggle Button */}
         <motion.button
           onClick={handleToggle}
-          className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-l-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 ${
-            isDark
-              ? "bg-gray-800 text-white hover:bg-gray-700 border border-gray-600"
-              : "bg-white text-gray-800 hover:bg-gray-50 border border-gray-200"
-          }`}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 rounded-l-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 text-white border border-gray-600"
+          style={{
+            backgroundColor: "rgba(35, 35, 35, 1)",
+            backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2Fe250d0609d1b46c5937b655762b8eb50)",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
