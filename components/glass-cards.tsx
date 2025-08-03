@@ -5,26 +5,26 @@ const GlassCards = () => {
   return (
     <div className="glass-cards-container">
       <div className="glass-cards-wrapper">
-        <div 
-          data-text="Clinics & Medical" 
-          style={{ '--r': '-15deg' } as React.CSSProperties} 
-          className="glass-card"
+        <div
+          data-text="Clinics & Medical"
+          style={{ '--r': '-15deg' } as React.CSSProperties}
+          className="glass-card clinics-medical"
         >
-          {/* Removed SVG icon as requested */}
+          {/* Clinics & Medical image */}
         </div>
-        <div 
-          data-text="Smart Education" 
-          style={{ '--r': '5deg' } as React.CSSProperties} 
-          className="glass-card"
+        <div
+          data-text="Smart Education"
+          style={{ '--r': '5deg' } as React.CSSProperties}
+          className="glass-card smart-education"
         >
-          {/* Removed SVG icon as requested */}
+          {/* Smart Education image */}
         </div>
-        <div 
-          data-text="Financial Services" 
-          style={{ '--r': '25deg' } as React.CSSProperties} 
-          className="glass-card"
+        <div
+          data-text="Financial Services"
+          style={{ '--r': '25deg' } as React.CSSProperties}
+          className="glass-card financial-services"
         >
-          {/* Removed SVG icon as requested */}
+          {/* Financial Services image */}
         </div>
       </div>
 
