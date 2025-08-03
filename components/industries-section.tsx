@@ -110,20 +110,36 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
             >
               <FlipWords words={words} isDark={isDark} className="inline-block" />
             </motion.h2>
-            <motion.p
+            <motion.div
               className={cn(
-                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative",
+                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative text-center",
                 isDark ? "text-gray-300" : "text-gray-600",
               )}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <span className="highlighted-tagline">
-                Smart solutions for every business, in{" "}
-                <span className="industry-highlight">every industry</span>, everywhere
-              </span>
-            </motion.p>
+              Smart solutions for every business, in{" "}
+              <PointerHighlight
+                rectangleClassName={cn(
+                  "border-2",
+                  isDark
+                    ? "bg-purple-500/10 border-purple-400/50"
+                    : "bg-purple-500/5 border-purple-500/30"
+                )}
+                pointerClassName={cn(
+                  isDark ? "text-purple-400" : "text-purple-600"
+                )}
+              >
+                <span className={cn(
+                  "relative z-10 font-bold",
+                  isDark ? "text-purple-300" : "text-purple-700"
+                )}>
+                  every industry
+                </span>
+              </PointerHighlight>
+              , everywhere
+            </motion.div>
 
             {/* Glass Cards */}
             <motion.div
