@@ -119,10 +119,8 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <span className="highlighted-tagline">
-                Smart solutions for{" "}
-                <span className="sector-highlight">every business</span>, in{" "}
-                <span className="sector-highlight">every industry</span>,{" "}
-                <span className="sector-highlight">everywhere</span>
+                Smart solutions for every business, in{" "}
+                <span className="industry-highlight">every industry</span>, everywhere
               </span>
             </motion.p>
 
