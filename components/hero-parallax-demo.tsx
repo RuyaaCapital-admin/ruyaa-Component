@@ -80,7 +80,7 @@ export default function HeroParallaxDemo() {
       </div> */}
 
       {/* Industries Section */}
-      <div className="relative z-30">
+      <div className="relative z-30 flex flex-col">
         <IndustriesSection isDark={isDark} />
       </div>
 
