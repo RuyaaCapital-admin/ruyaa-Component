@@ -5,7 +5,7 @@ import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
 // Removed CustomButtonSection import
 import SocialButtons from "@/components/social-buttons"
-import AnalyticsDashboard from "@/components/analytics-dashboard"
+
 import {
   IconHome,
   IconUser,
@@ -20,7 +20,7 @@ import { useState } from "react"
 
 export default function HeroParallaxDemo() {
   const [isDark, setIsDark] = useState(true)
-  const [showAnalytics, setShowAnalytics] = useState(false)
+
 
   const toggleTheme = () => {
     setIsDark(!isDark)
@@ -47,11 +47,7 @@ export default function HeroParallaxDemo() {
       icon: <IconBriefcase className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
       href: "#portfolio",
     },
-    {
-      title: "Analytics",
-      icon: <IconChartBar className="h-full w-full text-blue-500" />,
-      onClick: () => setShowAnalytics(true),
-    },
+
     {
       title: isDark ? "Light Mode" : "Dark Mode",
       icon: isDark ? (
@@ -91,14 +87,13 @@ export default function HeroParallaxDemo() {
       {/* Social Buttons - Fixed on Right Side */}
       <SocialButtons isDark={isDark} />
 
-      {/* Analytics Dashboard */}
-      <AnalyticsDashboard isOpen={showAnalytics} onClose={() => setShowAnalytics(false)} />
+
 
       {/* Floating Dock Navigation */}
       <FloatingDock
         items={navItems}
-        desktopClassName="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50"
-        mobileClassName="fixed bottom-8 right-8 z-50"
+        desktopClassName="fixed top-8 left-1/2 transform -translate-x-1/2 z-50"
+        mobileClassName="fixed top-8 right-8 z-50"
         isDark={isDark}
       />
     </div>
