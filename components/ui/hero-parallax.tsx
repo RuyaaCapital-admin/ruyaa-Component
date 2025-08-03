@@ -159,34 +159,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
         </motion.div>
       </div>
 
-      <motion.div
-        className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-8 md:mt-10"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 3 }}
-      >
-        <Button
-          className={cn(
-            "w-40 h-10 rounded-xl border font-normal text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg",
-            isDark
-              ? "bg-white text-black border-white hover:bg-gray-100"
-              : "bg-black text-white border-black hover:bg-gray-800",
-          )}
-        >
-          Contact Us
-        </Button>
-        <Button
-          variant="outline"
-          className={cn(
-            "w-40 h-10 rounded-xl text-sm font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg",
-            isDark
-              ? "border-white text-white hover:bg-white hover:text-black"
-              : "border-black text-black hover:bg-black hover:text-white",
-          )}
-        >
-          Explore More
-        </Button>
-      </motion.div>
+
     </div>
   )
 }
