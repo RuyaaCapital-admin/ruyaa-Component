@@ -135,7 +135,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
         </div>
 
         {/* Enhanced Tagline */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
@@ -156,7 +156,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
             transition={{ duration: 1, delay: 3.5 }}
             className={cn("absolute bottom-0 left-0 h-0.5 opacity-50", isDark ? "bg-blue-400" : "bg-blue-500")}
           />
-        </motion.p>
+        </motion.div>
       </div>
 
       <motion.div
