@@ -112,14 +112,16 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
             </motion.h2>
             <motion.div
               className={cn(
-                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative text-center",
+                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative text-center leading-relaxed",
                 isDark ? "text-gray-300" : "text-gray-600",
               )}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Smart solutions for every business, in{" "}
+              <span className="inline-block">Smart solutions for every business,</span>
+              <br className="md:hidden" />
+              <span className="inline-block"> in </span>
               <PointerHighlight
                 rectangleClassName={cn(
                   "border-2",
@@ -130,15 +132,16 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
                 pointerClassName={cn(
                   isDark ? "text-purple-400" : "text-purple-600"
                 )}
+                containerClassName="inline-block mx-1"
               >
                 <span className={cn(
-                  "relative z-10 font-bold",
+                  "relative z-10 font-bold px-1",
                   isDark ? "text-purple-300" : "text-purple-700"
                 )}>
                   every industry
                 </span>
               </PointerHighlight>
-              , everywhere
+              <span className="inline-block">, everywhere</span>
             </motion.div>
 
             {/* Glass Cards */}
