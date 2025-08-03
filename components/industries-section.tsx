@@ -161,12 +161,12 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           background: linear-gradient(
             120deg,
             ${isDark
-              ? 'rgba(34, 197, 94, 0.3)'
-              : 'rgba(34, 197, 94, 0.2)'
+              ? 'rgba(6, 182, 212, 0.25)'
+              : 'rgba(6, 182, 212, 0.15)'
             } 0%,
             ${isDark
-              ? 'rgba(59, 130, 246, 0.3)'
-              : 'rgba(59, 130, 246, 0.2)'
+              ? 'rgba(14, 165, 233, 0.25)'
+              : 'rgba(14, 165, 233, 0.15)'
             } 100%
           );
           padding: 4px 12px;
@@ -174,12 +174,12 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           font-weight: 700;
           color: ${isDark ? '#ffffff' : '#1f2937'};
           border: 2px solid ${isDark
-            ? 'rgba(34, 197, 94, 0.4)'
-            : 'rgba(34, 197, 94, 0.3)'
+            ? 'rgba(6, 182, 212, 0.35)'
+            : 'rgba(6, 182, 212, 0.25)'
           };
           box-shadow: ${isDark
-            ? '0 4px 12px rgba(34, 197, 94, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
-            : '0 4px 12px rgba(34, 197, 94, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8)'
+            ? '0 4px 12px rgba(6, 182, 212, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+            : '0 4px 12px rgba(6, 182, 212, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.8)'
           };
           text-shadow: ${isDark
             ? '0 1px 2px rgba(0, 0, 0, 0.3)'
@@ -189,32 +189,36 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           margin: 0 2px;
         }
 
-        .sector-highlight {
+        .industry-highlight {
           position: relative;
           display: inline-block;
           background: linear-gradient(
             120deg,
             ${isDark
-              ? 'rgba(34, 197, 94, 0.2)'
-              : 'rgba(34, 197, 94, 0.15)'
+              ? 'rgba(139, 92, 246, 0.25)'
+              : 'rgba(139, 92, 246, 0.18)'
             } 0%,
             ${isDark
-              ? 'rgba(59, 130, 246, 0.2)'
-              : 'rgba(59, 130, 246, 0.15)'
+              ? 'rgba(168, 85, 247, 0.25)'
+              : 'rgba(168, 85, 247, 0.18)'
             } 100%
           );
-          padding: 2px 8px;
-          border-radius: 8px;
-          font-weight: 600;
+          padding: 3px 10px;
+          border-radius: 10px;
+          font-weight: 700;
           color: ${isDark ? '#ffffff' : '#1f2937'};
           transition: all 0.3s ease;
-          border: 1px solid ${isDark
-            ? 'rgba(34, 197, 94, 0.3)'
-            : 'rgba(34, 197, 94, 0.25)'
+          border: 2px solid ${isDark
+            ? 'rgba(139, 92, 246, 0.4)'
+            : 'rgba(139, 92, 246, 0.3)'
           };
           box-shadow: ${isDark
-            ? '0 2px 8px rgba(34, 197, 94, 0.1)'
-            : '0 2px 8px rgba(34, 197, 94, 0.08)'
+            ? '0 3px 10px rgba(139, 92, 246, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.1)'
+            : '0 3px 10px rgba(139, 92, 246, 0.12), inset 0 1px 3px rgba(255, 255, 255, 0.9)'
+          };
+          text-shadow: ${isDark
+            ? '0 1px 3px rgba(0, 0, 0, 0.4)'
+            : '0 1px 3px rgba(255, 255, 255, 0.9)'
           };
         }
 
