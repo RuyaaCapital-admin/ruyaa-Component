@@ -222,6 +222,25 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           };
         }
 
+        .industry-highlight:hover {
+          background: linear-gradient(
+            120deg,
+            ${isDark
+              ? 'rgba(139, 92, 246, 0.35)'
+              : 'rgba(139, 92, 246, 0.28)'
+            } 0%,
+            ${isDark
+              ? 'rgba(168, 85, 247, 0.35)'
+              : 'rgba(168, 85, 247, 0.28)'
+            } 100%
+          );
+          transform: translateY(-1px);
+          box-shadow: ${isDark
+            ? '0 5px 15px rgba(139, 92, 246, 0.2)'
+            : '0 5px 15px rgba(139, 92, 246, 0.18)'
+          };
+        }
+
         .sector-highlight:hover {
           background: linear-gradient(
             120deg,
