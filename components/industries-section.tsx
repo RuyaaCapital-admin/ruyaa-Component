@@ -152,11 +152,43 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
         </div>
       </motion.section>
 
-      {/* CSS for highlighted tagline */}
-      <style jsx>{`
+      {/* CSS for highlighted tagline and phrases */}
+      <style jsx global>{`
         .highlighted-tagline {
           position: relative;
           display: inline-block;
+        }
+
+        .highlight-phrase {
+          background: linear-gradient(
+            120deg,
+            ${isDark
+              ? 'rgba(34, 197, 94, 0.3)'
+              : 'rgba(34, 197, 94, 0.2)'
+            } 0%,
+            ${isDark
+              ? 'rgba(59, 130, 246, 0.3)'
+              : 'rgba(59, 130, 246, 0.2)'
+            } 100%
+          );
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-weight: 700;
+          color: ${isDark ? '#ffffff' : '#1f2937'};
+          border: 2px solid ${isDark
+            ? 'rgba(34, 197, 94, 0.4)'
+            : 'rgba(34, 197, 94, 0.3)'
+          };
+          box-shadow: ${isDark
+            ? '0 4px 12px rgba(34, 197, 94, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+            : '0 4px 12px rgba(34, 197, 94, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.8)'
+          };
+          text-shadow: ${isDark
+            ? '0 1px 2px rgba(0, 0, 0, 0.3)'
+            : '0 1px 2px rgba(255, 255, 255, 0.8)'
+          };
+          display: inline-block;
+          margin: 0 2px;
         }
 
         .sector-highlight {
