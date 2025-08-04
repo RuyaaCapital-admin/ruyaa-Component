@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { useRef } from "react"
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 import { FlipWords } from "@/components/ui/flip-words" // Import FlipWords
+import { PointerHighlight } from "@/components/ui/pointer-highlight"
 import GlassCards from "./glass-cards"
 
 interface Industry {
@@ -109,17 +110,39 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
             >
               <FlipWords words={words} isDark={isDark} className="inline-block" />
             </motion.h2>
-            <motion.p
+            <motion.div
               className={cn(
-                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12",
+                "text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto mb-8 md:mb-12 relative text-center leading-relaxed",
                 isDark ? "text-gray-300" : "text-gray-600",
               )}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Smart solutions for every business, in every industry, everywhere
-            </motion.p>
+              <span className="inline-block">Smart solutions for every business,</span>
+              <br className="md:hidden" />
+              <span className="inline-block"> in </span>
+              <PointerHighlight
+                rectangleClassName={cn(
+                  "border-2",
+                  isDark
+                    ? "bg-purple-500/10 border-purple-400/50"
+                    : "bg-purple-500/5 border-purple-500/30"
+                )}
+                pointerClassName={cn(
+                  isDark ? "text-purple-400" : "text-purple-600"
+                )}
+                containerClassName="inline-block mx-1"
+              >
+                <span className={cn(
+                  "relative z-10 font-bold px-1",
+                  isDark ? "text-purple-300" : "text-purple-700"
+                )}>
+                  every industry
+                </span>
+              </PointerHighlight>
+              <span className="inline-block">, everywhere</span>
+            </motion.div>
 
             {/* Glass Cards */}
             <motion.div
@@ -146,6 +169,41 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           </motion.div>
         </div>
       </motion.section>
+
+      {/* CSS for highlighted phrases in rotating text */}
+      <style jsx global>{`
+        .highlight-phrase {
+          background: linear-gradient(
+            120deg,
+            ${isDark
+              ? 'rgba(6, 182, 212, 0.25)'
+              : 'rgba(6, 182, 212, 0.15)'
+            } 0%,
+            ${isDark
+              ? 'rgba(14, 165, 233, 0.25)'
+              : 'rgba(14, 165, 233, 0.15)'
+            } 100%
+          );
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-weight: 700;
+          color: ${isDark ? '#ffffff' : '#1f2937'};
+          border: 2px solid ${isDark
+            ? 'rgba(6, 182, 212, 0.35)'
+            : 'rgba(6, 182, 212, 0.25)'
+          };
+          box-shadow: ${isDark
+            ? '0 4px 12px rgba(6, 182, 212, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+            : '0 4px 12px rgba(6, 182, 212, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.8)'
+          };
+          text-shadow: ${isDark
+            ? '0 1px 2px rgba(0, 0, 0, 0.3)'
+            : '0 1px 2px rgba(255, 255, 255, 0.8)'
+          };
+          display: inline-block;
+          margin: 0 2px;
+        }
+      `}</style>
     </BackgroundBeamsWithCollision>
   )
 }
