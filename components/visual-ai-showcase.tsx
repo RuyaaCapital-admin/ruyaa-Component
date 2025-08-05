@@ -474,14 +474,12 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
                   <h4 className={cn("font-semibold mb-3", isDark ? "text-white" : "text-gray-900")}>
                     Connected Services:
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 bg-black">
                     {aiServices[activeService].integrations.map((integration, index) => (
                       <span
                         key={index}
-                        className={cn(
-                          "px-3 py-1 rounded text-sm",
-                          isDark ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-700"
-                        )}
+                        className="px-3 py-1 rounded text-sm text-gray-300"
+                        style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                       >
                         {integration}
                       </span>
