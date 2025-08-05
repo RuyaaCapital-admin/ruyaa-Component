@@ -72,7 +72,7 @@ const caseStudies: CaseStudy[] = [
         before: "$3.2B annually",
         after: "$1.9B annually",
         improvement: "40% reduction",
-        icon: <IconDollar className="h-5 w-5" />
+        icon: <IconCurrencyDollar className="h-5 w-5" />
       },
       {
         metric: "Stockout Rate",
@@ -205,7 +205,7 @@ const caseStudies: CaseStudy[] = [
         before: "$1.8B losses",
         after: "$50M losses",
         improvement: "$1.75B saved",
-        icon: <IconDollar className="h-5 w-5" />
+        icon: <IconCurrencyDollar className="h-5 w-5" />
       }
     ],
     roi: {
