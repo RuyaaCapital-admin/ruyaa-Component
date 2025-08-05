@@ -58,9 +58,15 @@ const GoogleCalendarLogo = ({ className }: { className?: string }) => (
 
 const GmailLogo = ({ className }: { className?: string }) => (
   <div className={cn("rounded-lg p-2 bg-white", className)}>
-    <div className="w-6 h-6 bg-gradient-to-br from-red-600 to-red-400 rounded flex items-center justify-center">
-      <span className="text-white text-xs font-bold">@</span>
-    </div>
+    <div
+      className="w-6 h-6 rounded flex items-center justify-center"
+      style={{
+        backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2Fb28b53df88fa4c49b4b3781167d08bdc%2F2de66ac1650445c7b26310f187231266)",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover"
+      }}
+    />
   </div>
 )
 
