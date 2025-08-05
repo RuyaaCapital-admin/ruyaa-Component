@@ -4,7 +4,7 @@ import type React from "react"
 
 import { cn } from "@/lib/utils"
 import { useRef } from "react"
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
+import { CleanBackgroundAnimation } from "@/components/ui/clean-background-animation"
 import { FlipWords } from "@/components/ui/flip-words" // Import FlipWords
 import { PointerHighlight } from "@/components/ui/pointer-highlight"
 import GlassCards from "./glass-cards"
@@ -83,7 +83,7 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
   ]
 
   return (
-    <BackgroundBeamsWithCollision isDark={isDark} className="min-h-screen">
+    <CleanBackgroundAnimation isDark={isDark} className="min-h-screen">
       <motion.section
         ref={ref}
         className="py-16 md:py-20 px-4 relative overflow-hidden w-full flex flex-col items-center justify-center text-center" // Added flexbox for centering
@@ -204,6 +204,6 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           margin: 0 2px;
         }
       `}</style>
-    </BackgroundBeamsWithCollision>
+    </CleanBackgroundAnimation>
   )
 }

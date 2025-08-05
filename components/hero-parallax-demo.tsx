@@ -3,6 +3,7 @@ import { HeroParallax } from "@/components/ui/hero-parallax"
 import { FloatingDock } from "@/components/ui/floating-dock"
 import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
+import VisualAIShowcase from "@/components/visual-ai-showcase"
 // Removed CustomButtonSection import
 import SocialButtons from "@/components/social-buttons"
 
@@ -82,6 +83,11 @@ export default function HeroParallaxDemo() {
       {/* Industries Section */}
       <div className="relative z-30 flex flex-col">
         <IndustriesSection isDark={isDark} />
+      </div>
+
+      {/* Visual AI Showcase Section */}
+      <div className="relative z-30">
+        <VisualAIShowcase isDark={isDark} />
       </div>
 
       {/* Social Buttons - Fixed on Right Side */}
