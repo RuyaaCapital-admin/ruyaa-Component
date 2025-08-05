@@ -113,27 +113,27 @@ export const products = [
   {
     title: "AI Analytics Dashboard",
     link: "https://ruyaacapital.com/analytics",
-    thumbnail: "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
+    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Neural Network Intelligence",
-    link: "https://ruyaacapital.com/neural",
-    thumbnail: "https://images.pexels.com/photos/17483869/pexels-photo-17483869.jpeg",
+    link: "https://ruyaacapital.com/neural", 
+    thumbnail: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "AI Data Processing",
     link: "https://ruyaacapital.com/processing",
-    thumbnail: "https://images.pexels.com/photos/17483874/pexels-photo-17483874.png",
+    thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Predictive Analytics Engine",
     link: "https://ruyaacapital.com/predictive",
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1579952363873-27d3bfda9227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Intelligent Automation Hub",
     link: "https://ruyaacapital.com/automation",
-    thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "AI Security Operations",
@@ -143,27 +143,27 @@ export const products = [
   {
     title: "Machine Learning Models",
     link: "https://ruyaacapital.com/ml-models",
-    thumbnail: "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Conversational AI Platform",
     link: "https://ruyaacapital.com/chatbot",
-    thumbnail: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Computer Vision Suite",
     link: "https://ruyaacapital.com/vision",
-    thumbnail: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Real-time Data Streams",
     link: "https://ruyaacapital.com/realtime",
-    thumbnail: "https://images.unsplash.com/photo-1551808525-51a94da548ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "AI Content Generation",
     link: "https://ruyaacapital.com/content",
-    thumbnail: "https://images.unsplash.com/photo-1516110833967-0b5656ca893a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Blockchain AI Analytics",
@@ -173,12 +173,12 @@ export const products = [
   {
     title: "Smart Document Processing",
     link: "https://ruyaacapital.com/documents",
-    thumbnail: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "AI Quality Assurance",
     link: "https://ruyaacapital.com/qa",
-    thumbnail: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Intelligent Recommendations",
