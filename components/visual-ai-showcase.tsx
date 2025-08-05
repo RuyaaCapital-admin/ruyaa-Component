@@ -464,7 +464,7 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
                 
                 <div className={cn(
                   "rounded-lg border-2 mb-6",
-                  isDark ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"
+                  isDark ? "border-gray-700" : "bg-gray-50 border-gray-200"
                 )}>
                   {React.createElement(aiServices[activeService].demo, { isDark })}
                 </div>
