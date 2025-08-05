@@ -82,9 +82,17 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
 
   return (
     <div className="max-w-7xl relative mx-auto py-16 md:py-24 px-4 w-full left-0 top-0">
-      <h1 className={cn("text-2xl md:text-7xl font-bold mb-6 md:mb-8", isDark ? "text-white" : "text-gray-900")}>
-        Transform Your Business with <br /> AI-Powered Solutions
-      </h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className={cn("text-2xl md:text-7xl font-bold mb-6 md:mb-8 leading-tight", isDark ? "text-white" : "text-gray-900")}
+      >
+        Transform Your Business with{" "}
+        <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          AI-Powered Solutions
+        </span>
+      </motion.h1>
 
       {/* Unified Brand Presentation with Enhanced Effects */}
       <div className="flex flex-col items-center md:items-start max-w-4xl">

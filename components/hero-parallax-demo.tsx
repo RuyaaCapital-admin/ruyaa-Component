@@ -3,8 +3,14 @@ import { HeroParallax } from "@/components/ui/hero-parallax"
 import { FloatingDock } from "@/components/ui/floating-dock"
 import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
+ ai_main_554991115068
+import InteractiveAIShowcase from "@/components/interactive-ai-showcase"
+
+// Removed CustomButtonSection import
+
 import VisualAIShowcase from "@/components/visual-ai-showcase"
 import AIAutomationSection from "@/components/ai-automation-section"
+ main
 import SocialButtons from "@/components/social-buttons"
 
 import {
@@ -85,9 +91,11 @@ export default function HeroParallaxDemo() {
         <IndustriesSection isDark={isDark} />
       </div>
 
-      {/* Visual AI Showcase Section */}
+
+
+      {/* Interactive AI Showcase Section */}
       <div className="relative z-30">
-        <VisualAIShowcase isDark={isDark} />
+        <InteractiveAIShowcase isDark={isDark} />
       </div>
 
       {/* AI Automation Section */}
@@ -113,78 +121,78 @@ export default function HeroParallaxDemo() {
 
 export const products = [
   {
-    title: "AI Analytics Platform",
+    title: "AI Analytics Dashboard",
     link: "https://ruyaacapital.com/analytics",
-    thumbnail: "https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F664c26b02f7e448fa8dfe6df841853af?format=webp&width=800",
-  },
-  {
-    title: "Smart Investment Tools",
-    link: "https://ruyaacapital.com/investment",
-    thumbnail: "https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F34f4312a14354910aec2ec7dbba4c4c5?format=webp&width=800",
-  },
-  {
-    title: "Risk Assessment AI",
-    link: "https://ruyaacapital.com/risk",
-    thumbnail: "https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2Fc8c566e33f994763a9f488b92e14095c?format=webp&width=800",
-  },
-  {
-    title: "Market Intelligence",
-    link: "https://ruyaacapital.com/market",
     thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Automated Trading",
-    link: "https://ruyaacapital.com/trading",
-    thumbnail: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Neural Network Intelligence",
+    link: "https://ruyaacapital.com/neural", 
+    thumbnail: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Portfolio Optimizer",
-    link: "https://ruyaacapital.com/optimizer",
-    thumbnail: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "AI Data Processing",
+    link: "https://ruyaacapital.com/processing",
+    thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Financial Forecasting",
-    link: "https://ruyaacapital.com/forecasting",
-    thumbnail: "https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Predictive Analytics Engine",
+    link: "https://ruyaacapital.com/predictive",
+    thumbnail: "https://images.unsplash.com/photo-1579952363873-27d3bfda9227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Client Dashboard",
-    link: "https://ruyaacapital.com/dashboard",
+    title: "Intelligent Automation Hub",
+    link: "https://ruyaacapital.com/automation",
+    thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "AI Security Operations",
+    link: "https://ruyaacapital.com/security",
+    thumbnail: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Machine Learning Models",
+    link: "https://ruyaacapital.com/ml-models",
+    thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Conversational AI Platform",
+    link: "https://ruyaacapital.com/chatbot",
     thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Compliance Monitor",
-    link: "https://ruyaacapital.com/compliance",
+    title: "Computer Vision Suite",
+    link: "https://ruyaacapital.com/vision",
     thumbnail: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Data Visualization",
-    link: "https://ruyaacapital.com/visualization",
-    thumbnail: "https://images.unsplash.com/photo-1551808525-51a94da548ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Real-time Data Streams",
+    link: "https://ruyaacapital.com/realtime",
+    thumbnail: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Sentiment Analysis",
-    link: "https://ruyaacapital.com/sentiment",
-    thumbnail: "https://images.unsplash.com/photo-1516110833967-0b5656ca893a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "AI Content Generation",
+    link: "https://ruyaacapital.com/content",
+    thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Blockchain Analytics",
+    title: "Blockchain AI Analytics",
     link: "https://ruyaacapital.com/blockchain",
     thumbnail: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "ESG Scoring",
-    link: "https://ruyaacapital.com/esg",
-    thumbnail: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "Smart Document Processing",
+    link: "https://ruyaacapital.com/documents",
+    thumbnail: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Alternative Data",
-    link: "https://ruyaacapital.com/altdata",
-    thumbnail: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    title: "AI Quality Assurance",
+    link: "https://ruyaacapital.com/qa",
+    thumbnail: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "Robo Advisory",
-    link: "https://ruyaacapital.com/robo",
+    title: "Intelligent Recommendations",
+    link: "https://ruyaacapital.com/recommendations",
     thumbnail: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ]
