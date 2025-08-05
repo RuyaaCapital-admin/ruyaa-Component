@@ -115,7 +115,9 @@ const SocialMediaMarquee = ({ isDark }: { isDark?: boolean }) => {
   )
 }
 
-const StyledWrapper = styled.div<{ isDark?: boolean }>`
+const StyledWrapper = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isDark',
+})<{ isDark?: boolean }>`
   .content {
     display: flex;
     flex-direction: column;
