@@ -362,7 +362,7 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
                 "rounded-lg p-6 mb-4",
                 isDark ? "bg-gray-800" : "bg-gray-100"
               )}>
-                <services[activeService].demo isDark={isDark} />
+                {React.createElement(services[activeService].demo, { isDark })}
               </div>
               
               <div className="text-center">
