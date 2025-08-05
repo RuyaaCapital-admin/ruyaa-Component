@@ -83,7 +83,7 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
   ]
 
   return (
-    <BackgroundBeamsWithCollision isDark={isDark} className="min-h-screen">
+    <CleanBackgroundAnimation isDark={isDark} className="min-h-screen">
       <motion.section
         ref={ref}
         className="py-16 md:py-20 px-4 relative overflow-hidden w-full flex flex-col items-center justify-center text-center" // Added flexbox for centering
@@ -204,6 +204,6 @@ export default function IndustriesSection({ isDark }: { isDark: boolean }) {
           margin: 0 2px;
         }
       `}</style>
-    </BackgroundBeamsWithCollision>
+    </CleanBackgroundAnimation>
   )
 }
