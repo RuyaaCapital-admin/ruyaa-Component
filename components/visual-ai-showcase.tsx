@@ -414,13 +414,22 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
               className={cn(
                 "px-6 py-3 rounded-lg font-medium transition-all duration-200",
                 activeService === index
-                  ? isDark 
-                    ? "bg-white text-black shadow-lg" 
+                  ? isDark
+                    ? "bg-white text-black shadow-lg"
                     : "bg-black text-white shadow-lg"
-                  : isDark 
-                    ? "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700" 
+                  : isDark
+                    ? "text-gray-300 hover:bg-gray-700 border border-gray-700"
                     : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 shadow-sm"
               )}
+              style={{
+                backgroundColor: activeService === index
+                  ? (isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")
+                  : activeService === 0 && index === 0
+                    ? "rgba(55, 55, 55, 1)"
+                    : activeService === 2 && index === 2
+                      ? "rgba(0, 0, 0, 1)"
+                      : undefined
+              }}
             >
               {service.title}
             </button>
