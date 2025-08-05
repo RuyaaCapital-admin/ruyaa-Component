@@ -89,9 +89,9 @@ export default function HeroParallaxDemo() {
       </div>
 
       {/* AI Benefits Showcase Section */}
-      {/* <div className="relative z-30">
+      <div className="relative z-30">
         <AIBenefitsShowcase isDark={isDark} />
-      </div> */}
+      </div>
 
       {/* Real AI Services Section */}
       <div className="relative z-30">
