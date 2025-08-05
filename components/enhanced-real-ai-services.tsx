@@ -968,20 +968,45 @@ export default function EnhancedRealAIServices({ isDark }: { isDark: boolean }) 
           <AIMetricsDashboard isDark={isDark} />
         </motion.div>
 
-        {/* Bottom CTA */}
+        {/* Documentation & Resources */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className={cn(
-            "inline-flex items-center space-x-2 px-6 py-3 rounded-lg border",
-            isDark ? "bg-gray-900/50 border-gray-800 text-gray-300" : "bg-white/80 border-gray-200 text-gray-600"
-          )}>
-            <IconGauge className="h-5 w-5" />
-            <span className="font-medium">Ready to transform your business with proven AI solutions?</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <a
+              href="https://www.notion.so/246ec16dad6e81928a09c1bc17894189"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex items-center space-x-2 px-6 py-3 rounded-lg border transition-all duration-300 hover:scale-105",
+                isDark ? "bg-gray-900/50 border-gray-800 text-gray-300 hover:border-blue-500" : "bg-white/80 border-gray-200 text-gray-600 hover:border-blue-500"
+              )}
+            >
+              <IconExternalLink className="h-5 w-5" />
+              <span className="font-medium">View Complete Performance Data</span>
+            </a>
+            <a
+              href="https://www.notion.so/246ec16dad6e8140bbcfeaf6a734f648"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex items-center space-x-2 px-6 py-3 rounded-lg border transition-all duration-300 hover:scale-105",
+                isDark ? "bg-blue-900/50 border-blue-800 text-blue-300 hover:border-blue-500" : "bg-blue-50 border-blue-200 text-blue-600 hover:border-blue-500"
+              )}
+            >
+              <IconGauge className="h-5 w-5" />
+              <span className="font-medium">Interactive ROI Calculator</span>
+            </a>
           </div>
+          <p className={cn(
+            "mt-4 text-sm",
+            isDark ? "text-gray-400" : "text-gray-500"
+          )}>
+            Comprehensive documentation with detailed metrics, implementation guides, and ROI calculations
+          </p>
         </motion.div>
       </div>
     </section>
