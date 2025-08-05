@@ -10,16 +10,26 @@ export function LampDemo({ isDark }: { isDark: boolean }) {
         initial={{ opacity: 0.5, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.3,
-          duration: 0.8,
+          delay: 0.4,
+          duration: 1.0,
           ease: "easeInOut",
         }}
         className="mt-8 flex flex-col items-center"
       >
-        <img
+        <motion.img
           src="/images/ruyaa-capital-logo.png"
           alt="Ruyaa Capital Logo"
           className="h-20 md:h-28 lg:h-32 w-auto mb-4 md:mb-6 drop-shadow-2xl"
+          whileHover={{ 
+            scale: 1.1, 
+            rotate: 2,
+            filter: "brightness(1.1)"
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 300, 
+            damping: 20 
+          }}
         />
         <h1
           className={cn(
@@ -57,8 +67,8 @@ export const LampContainer = ({
           initial={{ opacity: 0.5, width: "15rem" }}
           whileInView={{ opacity: 1, width: "30rem" }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
+            delay: 0.4,
+            duration: 1.0,
             ease: "easeInOut",
           }}
           style={{
@@ -86,8 +96,8 @@ export const LampContainer = ({
           initial={{ opacity: 0.5, width: "15rem" }}
           whileInView={{ opacity: 1, width: "30rem" }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
+            delay: 0.4,
+            duration: 1.0,
             ease: "easeInOut",
           }}
           style={{
@@ -128,8 +138,8 @@ export const LampContainer = ({
           initial={{ width: "8rem" }}
           whileInView={{ width: "16rem" }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
+            delay: 0.4,
+            duration: 1.0,
             ease: "easeInOut",
           }}
           className={cn(
@@ -141,8 +151,8 @@ export const LampContainer = ({
           initial={{ width: "15rem" }}
           whileInView={{ width: "30rem" }}
           transition={{
-            delay: 0.3,
-            duration: 0.8,
+            delay: 0.4,
+            duration: 1.0,
             ease: "easeInOut",
           }}
           className={cn(

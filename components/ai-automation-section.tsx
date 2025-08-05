@@ -2,6 +2,7 @@
 import { motion, useInView } from "motion/react"
 import { cn } from "@/lib/utils"
 import { useRef, useState } from "react"
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 
 interface AutomationService {
   id: string
@@ -104,22 +105,8 @@ export default function AIAutomationSection({ isDark }: { isDark: boolean }) {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section ref={ref} className={cn("py-24 px-4 relative overflow-hidden", isDark ? "bg-gray-900" : "bg-gray-50")}>
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className={cn(
-            "absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl opacity-20",
-            isDark ? "bg-blue-500" : "bg-blue-300",
-          )}
-        />
-        <div
-          className={cn(
-            "absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl opacity-20",
-            isDark ? "bg-purple-500" : "bg-purple-300",
-          )}
-        />
-      </div>
+    <BackgroundBeamsWithCollision isDark={isDark} className="py-24 px-4">
+      <section ref={ref} className="relative z-10 w-full">
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -295,6 +282,7 @@ export default function AIAutomationSection({ isDark }: { isDark: boolean }) {
           </motion.button>
         </motion.div>
       </div>
-    </section>
+      </section>
+    </BackgroundBeamsWithCollision>
   )
 }

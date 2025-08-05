@@ -27,12 +27,12 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 300, damping: 30, bounce: 100 }
 
-  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1000]), springConfig)
-  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1000]), springConfig)
-  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [15, 0]), springConfig)
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig)
-  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig)
-  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-700, 500]), springConfig)
+  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), springConfig)
+  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1200]), springConfig)
+  const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.3], [15, 0]), springConfig)
+  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.3], [0.1, 1]), springConfig)
+  const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.3], [20, 0]), springConfig)
+  const translateY = useSpring(useTransform(scrollYProgress, [0, 0.3], [-800, 600]), springConfig)
 
   return (
     <div
@@ -94,16 +94,16 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
             initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{
-              duration: 1.2,
+              duration: 1.5,
               delay: 0.5,
               type: "spring",
-              stiffness: 100,
-              damping: 10,
+              stiffness: 120,
+              damping: 15,
             }}
             whileHover={{
-              scale: 1.1,
-              rotate: 5,
-              transition: { duration: 0.3 },
+              scale: 1.15,
+              rotate: 8,
+              transition: { duration: 0.4, type: "spring", stiffness: 300 },
             }}
             className="relative"
           >
@@ -128,7 +128,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
             className="flex-1"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 1.0, delay: 1.4, type: "spring", stiffness: 100 }}
           >
             <TypewriterEffectSmooth words={words} className="justify-start" />
           </motion.div>
@@ -139,10 +139,10 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
-            duration: 1,
-            delay: 2.5,
+            duration: 1.2,
+            delay: 2.8,
             type: "spring",
-            stiffness: 100,
+            stiffness: 120,
           }}
           className={cn(
             "text-lg md:text-xl lg:text-2xl font-medium mb-6 md:mb-8 text-center md:text-left relative",
@@ -153,7 +153,7 @@ export const Header = ({ isDark }: { isDark: boolean }) => {
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: "100%" }}
-            transition={{ duration: 1, delay: 3.5 }}
+            transition={{ duration: 1.2, delay: 4.0, ease: "easeInOut" }}
             className={cn("absolute bottom-0 left-0 h-0.5 opacity-50", isDark ? "bg-blue-400" : "bg-blue-500")}
           />
         </motion.div>
@@ -183,12 +183,26 @@ export const ProductCard = ({
         x: translate,
       }}
       whileHover={{
-        y: -20,
+        y: -25,
+        scale: 1.02,
+        rotateY: 5,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 20,
       }}
       key={product.title}
       className="group/product h-96 w-[30rem] relative shrink-0"
     >
-      <div className="block group-hover/product:shadow-2xl">
+      <motion.div 
+        className="block group-hover/product:shadow-2xl transition-shadow duration-300"
+        whileHover={{
+          boxShadow: isDark 
+            ? "0 25px 50px -12px rgba(255, 255, 255, 0.25)" 
+            : "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+        }}
+      >
         <img
           src={product.thumbnail || "/placeholder.svg"}
           height="600"
@@ -196,11 +210,16 @@ export const ProductCard = ({
           className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
           alt={product.title}
         />
-      </div>
+      </motion.div>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none rounded-lg"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
+      <motion.h2 
+        className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold text-lg"
+        initial={{ y: 10 }}
+        whileHover={{ y: 0 }}
+        transition={{ duration: 0.2 }}
+      >
         {product.title}
-      </h2>
+      </motion.h2>
     </motion.div>
   )
 }

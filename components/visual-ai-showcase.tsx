@@ -5,6 +5,7 @@ import { useRef } from "react"
 import { cn } from "@/lib/utils"
 import SocialMediaMarquee from "./social-media-marquee"
 import { Component as GlassIcons } from "./glass-icons"
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 
 // High-quality AI Brain Icon
 const AIBrainIcon = ({ className }: { className?: string }) => (
@@ -100,13 +101,8 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section 
-      ref={ref}
-      className={cn(
-        "py-20 md:py-32 px-4 relative",
-        isDark ? "bg-black" : "bg-gray-50"
-      )}
-    >
+    <BackgroundBeamsWithCollision isDark={isDark} className="py-20 md:py-32 px-4">
+      <section ref={ref} className="relative z-10 w-full">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -256,6 +252,7 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
           <GlassIcons items={glassIconsItems} className="max-w-4xl" />
         </motion.div>
       </div>
-    </section>
+      </section>
+    </BackgroundBeamsWithCollision>
   )
 }
