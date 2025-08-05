@@ -306,7 +306,7 @@ export default function RealAIServices({ isDark }: { isDark: boolean }) {
                       </>
                     ) : (
                       <>
-                        <IconPlay className="h-4 w-4 mr-2" />
+                        <IconPlayerPlay className="h-4 w-4 mr-2" />
                         View Interactive Demo
                       </>
                     )}
