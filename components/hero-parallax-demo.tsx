@@ -6,6 +6,7 @@ import IndustriesSection from "@/components/industries-section"
 import VisualAIShowcase from "@/components/visual-ai-showcase"
 import AIBenefitsShowcase from "@/components/ai-benefits-showcase"
 import RealAIServices from "@/components/real-ai-services"
+import AICaseStudies from "@/components/ai-case-studies"
 // Removed CustomButtonSection import
 import SocialButtons from "@/components/social-buttons"
 
@@ -95,6 +96,11 @@ export default function HeroParallaxDemo() {
       {/* Real AI Services Section */}
       <div className="relative z-30">
         <RealAIServices isDark={isDark} />
+      </div>
+
+      {/* AI Case Studies Section */}
+      <div className="relative z-30">
+        <AICaseStudies isDark={isDark} />
       </div>
 
       {/* Visual AI Showcase Section */}
