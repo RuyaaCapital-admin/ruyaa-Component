@@ -408,16 +408,17 @@ export default function RealAIServices({ isDark }: { isDark: boolean }) {
                             {service.realWorldExample.useCase}
                           </p>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="p-1"
-                          asChild
+                        <a
+                          href={service.realWorldExample.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={cn(
+                            "p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                            "inline-flex items-center justify-center"
+                          )}
                         >
-                          <a href={service.realWorldExample.link} target="_blank" rel="noopener noreferrer">
-                            <IconExternalLink className="h-4 w-4" />
-                          </a>
-                        </Button>
+                          <IconExternalLink className="h-4 w-4" />
+                        </a>
                       </div>
                       
                       <div className="space-y-1">
