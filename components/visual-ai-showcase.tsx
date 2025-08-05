@@ -72,7 +72,15 @@ const GmailLogo = ({ className }: { className?: string }) => (
 
 const SlackLogo = ({ className }: { className?: string }) => (
   <div className={cn("rounded-lg p-2 bg-white", className)}>
-    <div className="w-6 h-6 bg-gradient-to-br from-purple-600 to-green-500 rounded flex items-center justify-center">
+    <div
+      className="w-6 h-6 rounded flex items-center justify-center"
+      style={{
+        backgroundImage: "url(https://cdn.builder.io/api/v1/image/assets%2Fb28b53df88fa4c49b4b3781167d08bdc%2Fdc9fb520fd9e412da6e41f1d9b0d557d)",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover"
+      }}
+    >
       <span className="text-white text-xs font-bold">#</span>
     </div>
   </div>
