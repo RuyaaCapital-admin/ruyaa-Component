@@ -272,7 +272,7 @@ export default function RealAIServices({ isDark }: { isDark: boolean }) {
 
         {/* Services Grid */}
         <div className="grid lg:grid-cols-2 gap-8">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filteredServices.map((service, index) => (
               <motion.div
                 key={service.id}
