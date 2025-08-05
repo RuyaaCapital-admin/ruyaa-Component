@@ -88,9 +88,9 @@ export default function HeroParallaxDemo() {
 
 
 
-      {/* Visual AI Showcase Section */}
+      {/* Interactive AI Showcase Section */}
       <div className="relative z-30">
-        <VisualAIShowcase isDark={isDark} />
+        <InteractiveAIShowcase isDark={isDark} />
       </div>
 
       {/* Social Buttons - Fixed on Right Side */}
