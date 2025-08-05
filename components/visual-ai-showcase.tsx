@@ -1,9 +1,10 @@
 "use client"
 import React from "react"
-import { motion, useInView, AnimatePresence } from "motion/react"
-import { useState, useRef, useEffect } from "react"
+import { motion, useInView } from "motion/react"
+import { useRef } from "react"
 import { cn } from "@/lib/utils"
 import SocialMediaMarquee from "./social-media-marquee"
+import { Component as GlassIcons } from "./glass-icons"
 
 // High-quality AI Brain Icon
 const AIBrainIcon = ({ className }: { className?: string }) => (
@@ -13,98 +14,90 @@ const AIBrainIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-// Simple connection line component
-const ConnectionLine = ({ isDark, delay = 0 }: { isDark: boolean; delay?: number }) => (
-  <motion.div
-    className={cn("absolute w-0.5 h-24", isDark ? "bg-gray-300" : "bg-gray-600")}
-    initial={{ scaleY: 0, opacity: 0 }}
-    animate={{ scaleY: 1, opacity: 0.6 }}
-    transition={{
-      duration: 1.5,
-      delay,
-      ease: "easeInOut"
-    }}
-    style={{
-      transformOrigin: "top"
-    }}
-  />
-)
-
-// Curved connection paths
-const CurvedPath = ({ isDark, pathId }: { isDark: boolean; pathId: string }) => (
-  <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
-    <defs>
-      <path
-        id={pathId}
-        d="M 50 50 Q 200 50 350 100"
-        fill="none"
-        stroke={isDark ? "#d1d5db" : "#6b7280"}
-        strokeWidth="2"
-        strokeDasharray="5,5"
-      />
-    </defs>
-    <motion.path
-      d="M 50 50 Q 200 50 350 100"
-      fill="none"
-      stroke={isDark ? "#d1d5db" : "#6b7280"}
-      strokeWidth="2"
-      strokeDasharray="5,5"
-      initial={{ pathLength: 0, opacity: 0 }}
-      animate={{ pathLength: 1, opacity: 0.6 }}
-      transition={{ duration: 2, ease: "easeInOut" }}
-    />
-    <motion.circle
-      r="3"
-      fill={isDark ? "#ffffff" : "#000000"}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 2, duration: 0.5 }}
-    >
-      <animateMotion dur="2s" begin="0s" fill="freeze">
-        <mpath xlinkHref={`#${pathId}`} />
-      </animateMotion>
-    </motion.circle>
+// Icons for glass icons component
+const MessageIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
 )
 
-const aiServices = [
+const ShareIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <circle cx="18" cy="5" r="3"/>
+    <circle cx="6" cy="12" r="3"/>
+    <circle cx="18" cy="19" r="3"/>
+    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+  </svg>
+)
+
+const AutomationIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+)
+
+const AnalyticsIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M3 3v18h18"/>
+    <path d="M7 12l3-3 3 3 5-5"/>
+  </svg>
+)
+
+const IntegrationIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M16 16v4a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-4"/>
+    <path d="M8 8V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"/>
+    <rect x="8" y="8" width="8" height="8" rx="2"/>
+  </svg>
+)
+
+const OptimizationIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+    <polyline points="14,2 14,8 20,8"/>
+    <path d="M12 18v-6"/>
+    <path d="M9 15h6"/>
+  </svg>
+)
+
+const glassIconsItems = [
   {
-    id: "social-management",
-    title: "Social Media Management",
-    description: "AI manages all your social platforms automatically",
-    visual: "SocialAI",
-    results: ["Posts to all platforms", "Responds to comments 24/7", "Analyzes engagement data"],
-    example: "Schedule posts across Instagram, Twitter, LinkedIn simultaneously"
+    icon: <MessageIcon />,
+    color: "green",
+    label: "Chat Support"
   },
   {
-    id: "customer-support",
-    title: "Multi-Platform Support",
-    description: "One AI handles customer queries across all channels",
-    visual: "SupportAI",
-    results: ["WhatsApp, email, social unified", "Instant responses", "95% resolution rate"],
-    example: "Customer asks on Instagram, AI provides support and follows up via email"
+    icon: <ShareIcon />,
+    color: "purple",
+    label: "Social Media"
   },
   {
-    id: "content-creation",
-    title: "Content & Campaign Automation",
-    description: "AI creates and distributes content across platforms",
-    visual: "ContentAI",
-    results: ["Platform-specific content", "Optimal timing", "Brand consistency"],
-    example: "AI creates LinkedIn post for professionals, Instagram story for youth audience"
+    icon: <AutomationIcon />,
+    color: "orange",
+    label: "Automation"
+  },
+  {
+    icon: <AnalyticsIcon />,
+    color: "red",
+    label: "Analytics"
+  },
+  {
+    icon: <IntegrationIcon />,
+    color: "indigo",
+    label: "Integration"
+  },
+  {
+    icon: <OptimizationIcon />,
+    color: "green",
+    label: "Optimization"
   }
 ]
 
 export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
-  const [activeService, setActiveService] = useState(0)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveService(prev => (prev + 1) % aiServices.length)
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <section 
@@ -250,89 +243,17 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
           </div>
         </motion.div>
 
-        {/* Service Examples */}
+        {/* Glass Icons Section */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="space-y-8"
+          className={cn(
+            "rounded-2xl p-8",
+            isDark ? "text-white" : "text-gray-900"
+          )}
         >
-          <div className="text-center mb-12">
-            <h3 className={cn(
-              "text-2xl md:text-3xl font-bold mb-4",
-              isDark ? "text-white" : "text-gray-900"
-            )}>
-              See It In Action
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {aiServices.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                className={cn(
-                  "p-6 rounded-lg border transition-all duration-300 hover:scale-105",
-                  isDark 
-                    ? "bg-gray-900 border-gray-800 hover:border-gray-600" 
-                    : "bg-white border-gray-200 hover:border-gray-400"
-                )}
-              >
-                <h4 className={cn(
-                  "text-lg font-bold mb-3",
-                  isDark ? "text-white" : "text-gray-900"
-                )}>
-                  {service.title}
-                </h4>
-                <p className={cn(
-                  "text-sm mb-4",
-                  isDark ? "text-gray-300" : "text-gray-600"
-                )}>
-                  {service.description}
-                </p>
-                <div className={cn(
-                  "text-xs p-3 rounded border-l-4 mb-4",
-                  isDark 
-                    ? "bg-gray-800 border-gray-600 text-gray-300" 
-                    : "bg-gray-50 border-gray-400 text-gray-600"
-                )}>
-                  {service.example}
-                </div>
-                <div className="space-y-2">
-                  {service.results.map((result, idx) => (
-                    <div key={idx} className="flex items-center text-sm">
-                      <div className={cn(
-                        "w-2 h-2 rounded-full mr-3",
-                        isDark ? "bg-gray-300" : "bg-gray-600"
-                      )} />
-                      <span className={cn(isDark ? "text-gray-300" : "text-gray-700")}>
-                        {result}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <button className={cn(
-            "px-8 py-4 rounded-lg font-bold text-lg transition-all duration-200 hover:scale-105",
-            isDark 
-              ? "bg-white text-black hover:bg-gray-100" 
-              : "bg-black text-white hover:bg-gray-900"
-          )}>
-            Connect Your AI Agent
-          </button>
+          <GlassIcons items={glassIconsItems} className="max-w-4xl" />
         </motion.div>
       </div>
     </section>
