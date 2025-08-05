@@ -85,6 +85,11 @@ export default function HeroParallaxDemo() {
         <IndustriesSection isDark={isDark} />
       </div>
 
+      {/* Service Showcase Section */}
+      <div className="relative z-30">
+        <ServiceShowcaseSection isDark={isDark} />
+      </div>
+
       {/* Social Buttons - Fixed on Right Side */}
       <SocialButtons isDark={isDark} />
 
