@@ -5,15 +5,15 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { 
-  IconBrain, 
-  IconChartBar, 
+import {
+  IconBrain,
+  IconChartBar,
   IconRobot,
   IconMessageCircle,
   IconShield,
   IconTrendingUp,
-  IconPlay,
-  IconPause,
+  IconPlayerPlay,
+  IconPlayerPause,
   IconExternalLink
 } from "@tabler/icons-react"
 
