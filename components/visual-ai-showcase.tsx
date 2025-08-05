@@ -444,10 +444,7 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className={cn(
-              "rounded-2xl p-8 shadow-2xl",
-              isDark ? "bg-gray-900" : "bg-white"
-            )}
+            className="rounded-2xl p-8 shadow-2xl"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               {/* Left: Demo */}
