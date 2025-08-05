@@ -3,9 +3,14 @@ import { HeroParallax } from "@/components/ui/hero-parallax"
 import { FloatingDock } from "@/components/ui/floating-dock"
 import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
+ ai_main_554991115068
 import InteractiveAIShowcase from "@/components/interactive-ai-showcase"
 
 // Removed CustomButtonSection import
+
+import VisualAIShowcase from "@/components/visual-ai-showcase"
+import AIAutomationSection from "@/components/ai-automation-section"
+ main
 import SocialButtons from "@/components/social-buttons"
 
 import {
@@ -91,6 +96,11 @@ export default function HeroParallaxDemo() {
       {/* Interactive AI Showcase Section */}
       <div className="relative z-30">
         <InteractiveAIShowcase isDark={isDark} />
+      </div>
+
+      {/* AI Automation Section */}
+      <div className="relative z-30">
+        <AIAutomationSection isDark={isDark} />
       </div>
 
       {/* Social Buttons - Fixed on Right Side */}

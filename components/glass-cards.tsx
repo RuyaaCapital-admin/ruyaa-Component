@@ -64,15 +64,15 @@ const GlassCards = () => {
         }
 
         .glass-card.clinics-medical {
-          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F295dbea9e9c0481d87036f48d1d04e62?format=webp&width=800');
+          background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
         }
 
         .glass-card.smart-education {
-          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F002c9a6551674059a6daaa71ae10742f?format=webp&width=800');
+          background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(124, 58, 237, 0.3) 100%);
         }
 
         .glass-card.financial-services {
-          background-image: url('https://cdn.builder.io/api/v1/image/assets%2F3f570e1f499e489383888e022380825c%2F9925e7c323a843c786955ba53cb7d52c?format=webp&width=800');
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%);
         }
 
         .glass-cards-wrapper:hover .glass-card {
@@ -86,13 +86,15 @@ const GlassCards = () => {
           bottom: 0;
           width: 100%;
           height: 40px;
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
           display: flex;
           justify-content: center;
           align-items: center;
           color: #fff;
           font-size: 14px;
           font-weight: 500;
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
       `}</style>
     </div>

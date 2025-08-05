@@ -8,6 +8,16 @@ import { CleanBackgroundAnimation } from "@/components/ui/clean-background-anima
 import { FlipWords } from "@/components/ui/flip-words" // Import FlipWords
 import { PointerHighlight } from "@/components/ui/pointer-highlight"
 import GlassCards from "./glass-cards"
+import { 
+  Stethoscope, 
+  Globe, 
+  TrendingUp, 
+  GraduationCap,
+  Building2,
+  Smartphone,
+  Brain,
+  Zap
+} from "lucide-react"
 
 interface Industry {
   id: string
@@ -31,7 +41,7 @@ const industries: Industry[] = [
     description:
       "Advanced AI-powered healthcare solutions for patient management, diagnostics, and medical workflow optimization.",
     image: "/images/medical-solutions.png",
-    icon: <div className="h-4 w-4 text-black dark:text-neutral-400">Icon</div>, // Placeholder for icon
+    icon: <Stethoscope className="h-6 w-6 text-emerald-600" />,
     imageOpacity: 0.35, // Higher opacity for medical - clean, professional look
     gradientOpacity: { from: 0.65, via: 0.45, to: 0.65 },
     accentOpacity: 0.25,
@@ -42,7 +52,7 @@ const industries: Industry[] = [
     description:
       "Cutting-edge web solutions with AI integration for e-commerce, analytics, and customer engagement platforms.",
     image: "/images/web-businesses.png",
-    icon: <div className="h-4 w-4 text-black dark:text-neutral-400">Icon</div>, // Placeholder for icon
+    icon: <Globe className="h-6 w-6 text-blue-600" />,
     imageOpacity: 0.4, // Highest opacity for web - vibrant, dynamic feel
     gradientOpacity: { from: 0.55, via: 0.35, to: 0.55 },
     accentOpacity: 0.3,
@@ -53,7 +63,7 @@ const industries: Industry[] = [
     description:
       "Intelligent financial platforms with AI-driven investment strategies, risk assessment, and portfolio management.",
     image: "/images/financial-services.png",
-    icon: <div className="h-4 w-4 text-black dark:text-neutral-400">Icon</div>, // Placeholder for icon
+    icon: <TrendingUp className="h-6 w-6 text-green-600" />,
     imageOpacity: 0.25, // Lower opacity for finance - sophisticated, subtle
     gradientOpacity: { from: 0.7, via: 0.5, to: 0.7 },
     accentOpacity: 0.2,
@@ -64,7 +74,7 @@ const industries: Industry[] = [
     description:
       "Revolutionary educational technology with personalized learning, AI tutoring, and advanced training systems.",
     image: "/images/education-sector.png",
-    icon: <div className="h-4 w-4 text-black dark:text-neutral-400">Icon</div>, // Placeholder for icon
+    icon: <GraduationCap className="h-6 w-6 text-purple-600" />,
     imageOpacity: 0.32, // Moderate opacity for education - warm, approachable
     gradientOpacity: { from: 0.6, via: 0.4, to: 0.6 },
     accentOpacity: 0.22,
