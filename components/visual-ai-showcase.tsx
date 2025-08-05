@@ -186,7 +186,7 @@ const ClinicAssistantDemo = ({ isDark }: { isDark: boolean }) => {
 
 const WebsiteSupportDemo = ({ isDark }: { isDark: boolean }) => {
   const [activity, setActivity] = useState(0)
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActivity(prev => (prev + 1) % 3)
@@ -196,12 +196,12 @@ const WebsiteSupportDemo = ({ isDark }: { isDark: boolean }) => {
 
   const activities = [
     "Live chat with customer",
-    "Email follow-up sent", 
+    "Email follow-up sent",
     "Team notification"
   ]
 
   return (
-    <div className="relative w-full h-48 p-4">
+    <div className="relative w-full h-48 p-4 bg-black">
       {/* Central AI */}
       <div className={cn(
         "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 flex items-center justify-center z-10",
