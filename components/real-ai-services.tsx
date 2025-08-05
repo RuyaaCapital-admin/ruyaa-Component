@@ -301,7 +301,7 @@ export default function RealAIServices({ isDark }: { isDark: boolean }) {
                   >
                     {activeDemo === service.id ? (
                       <>
-                        <IconPause className="h-4 w-4 mr-2" />
+                        <IconPlayerPause className="h-4 w-4 mr-2" />
                         Stop Demo
                       </>
                     ) : (
