@@ -4,9 +4,7 @@ import { FloatingDock } from "@/components/ui/floating-dock"
 import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
 import VisualAIShowcase from "@/components/visual-ai-showcase"
-import AIBenefitsShowcase from "@/components/ai-benefits-showcase"
-import RealAIServices from "@/components/enhanced-real-ai-services"
-import AICaseStudies from "@/components/ai-case-studies"
+
 // Removed CustomButtonSection import
 import SocialButtons from "@/components/social-buttons"
 
