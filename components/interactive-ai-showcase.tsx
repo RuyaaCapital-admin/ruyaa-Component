@@ -3,17 +3,14 @@ import React, { useState } from "react"
 import { motion, AnimatePresence, useInView } from "motion/react"
 import { useRef } from "react"
 import { cn } from "@/lib/utils"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import SocialMediaMarquee from "./social-media-marquee"
 import { 
   IconX, 
   IconExternalLink, 
   IconTrendingUp,
-  IconCurrencyDollar,
-  IconClock,
-  IconUsers
+  IconSparkles,
+  IconCheck
 } from "@tabler/icons-react"
 
 // High-quality AI Brain Icon
@@ -80,13 +77,10 @@ interface AIExample {
   color: string
   realExample: {
     company: string
-    scenario: string
-    results: string[]
-    metrics: {
-      label: string
-      value: string
-      icon: React.ReactNode
-    }[]
+    shortDescription: string
+    mainBenefit: string
+    resultNumber: string
+    resultLabel: string
     image: string
     link: string
   }
@@ -96,24 +90,15 @@ const aiExamples: AIExample[] = [
   {
     id: "chat-support",
     title: "AI Chat Support",
-    description: "Intelligent conversational AI that handles customer inquiries 24/7",
+    description: "24/7 intelligent customer service",
     icon: <MessageIcon />,
     color: "green",
     realExample: {
       company: "Bank of America",
-      scenario: "Erica Virtual Assistant handles 35M+ customer interactions daily, providing instant financial support and personalized insights.",
-      results: [
-        "Instant responses to customer queries",
-        "87% resolution rate without human intervention",
-        "Available 24/7 across all platforms",
-        "Reduced call center volume by 25%"
-      ],
-      metrics: [
-        { label: "Response Time", value: "Instant", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Users Served", value: "35M+", icon: <IconUsers className="h-4 w-4" /> },
-        { label: "Cost Savings", value: "$500M/year", icon: <IconCurrencyDollar className="h-4 w-4" /> },
-        { label: "Accuracy Rate", value: "94%", icon: <IconTrendingUp className="h-4 w-4" /> }
-      ],
+      shortDescription: "Erica AI assistant helps 35M+ customers with banking instantly",
+      mainBenefit: "Instant support, no waiting",
+      resultNumber: "35M+",
+      resultLabel: "customers served daily",
       image: "https://images.pexels.com/photos/17483869/pexels-photo-17483869.jpeg",
       link: "https://bankofamerica.com/erica"
     }
@@ -121,24 +106,15 @@ const aiExamples: AIExample[] = [
   {
     id: "social-media",
     title: "Social Media AI",
-    description: "Smart content creation and social media management across platforms",
+    description: "Smart content creation & management",
     icon: <ShareIcon />,
     color: "purple",
     realExample: {
       company: "Netflix",
-      scenario: "AI-powered content personalization and social media engagement driving 93% customer retention through intelligent recommendations.",
-      results: [
-        "Personalized content for each user",
-        "Automated social media posting",
-        "Real-time engagement analysis",
-        "Cross-platform content optimization"
-      ],
-      metrics: [
-        { label: "Engagement Rate", value: "+54%", icon: <IconTrendingUp className="h-4 w-4" /> },
-        { label: "Content Views", value: "2.1B daily", icon: <IconUsers className="h-4 w-4" /> },
-        { label: "Retention", value: "93%", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Revenue Impact", value: "$18B", icon: <IconCurrencyDollar className="h-4 w-4" /> }
-      ],
+      shortDescription: "AI creates personalized content for each viewer automatically",
+      mainBenefit: "Perfect content every time",
+      resultNumber: "93%",
+      resultLabel: "customer retention rate",
       image: "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
       link: "https://netflix.com"
     }
@@ -146,24 +122,15 @@ const aiExamples: AIExample[] = [
   {
     id: "automation",
     title: "Process Automation",
-    description: "Intelligent workflow automation that handles complex business processes",
+    description: "Smart workflow automation",
     icon: <AutomationIcon />,
     color: "orange",
     realExample: {
       company: "Deutsche Bank",
-      scenario: "Loan processing automation reduced approval time from 2 weeks to 2 hours with 99.7% accuracy using AI-driven document processing.",
-      results: [
-        "Automated document processing",
-        "Intelligent decision making",
-        "Exception handling",
-        "Quality assurance checks"
-      ],
-      metrics: [
-        { label: "Processing Speed", value: "168x faster", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Accuracy Rate", value: "99.7%", icon: <IconTrendingUp className="h-4 w-4" /> },
-        { label: "Cost Savings", value: "45%", icon: <IconCurrencyDollar className="h-4 w-4" /> },
-        { label: "Customer Satisfaction", value: "+60%", icon: <IconUsers className="h-4 w-4" /> }
-      ],
+      shortDescription: "Loan approvals now take 2 hours instead of 2 weeks",
+      mainBenefit: "168x faster processing",
+      resultNumber: "99.7%",
+      resultLabel: "accuracy rate",
       image: "https://images.pexels.com/photos/17483874/pexels-photo-17483874.png",
       link: "https://db.com"
     }
@@ -171,24 +138,15 @@ const aiExamples: AIExample[] = [
   {
     id: "analytics",
     title: "Predictive Analytics",
-    description: "Advanced analytics that predict trends and optimize business decisions",
+    description: "Predict trends & optimize decisions",
     icon: <AnalyticsIcon />,
     color: "red",
     realExample: {
       company: "Walmart",
-      scenario: "AI demand forecasting across 10,000+ stores reduced inventory costs by $1.2B annually with 94% prediction accuracy.",
-      results: [
-        "Real-time demand forecasting",
-        "Inventory optimization",
-        "Price optimization",
-        "Supply chain management"
-      ],
-      metrics: [
-        { label: "Forecast Accuracy", value: "94%", icon: <IconTrendingUp className="h-4 w-4" /> },
-        { label: "Cost Reduction", value: "$1.2B/year", icon: <IconCurrencyDollar className="h-4 w-4" /> },
-        { label: "Processing Speed", value: "18x faster", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Stores Covered", value: "10,000+", icon: <IconUsers className="h-4 w-4" /> }
-      ],
+      shortDescription: "AI predicts what customers want before they know it",
+      mainBenefit: "Perfect inventory planning",
+      resultNumber: "$1.2B",
+      resultLabel: "saved annually",
       image: "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
       link: "https://corporate.walmart.com"
     }
@@ -196,24 +154,15 @@ const aiExamples: AIExample[] = [
   {
     id: "integration",
     title: "Smart Integration",
-    description: "Seamless AI-powered integration across all business systems",
+    description: "Connect all your business systems",
     icon: <IntegrationIcon />,
     color: "indigo",
     realExample: {
       company: "Salesforce",
-      scenario: "Einstein AI integration across CRM, marketing, and service platforms enabling 360° customer insights and automated workflows.",
-      results: [
-        "Unified data across platforms",
-        "Automated data synchronization",
-        "Real-time insights",
-        "Seamless workflow automation"
-      ],
-      metrics: [
-        { label: "Data Accuracy", value: "99.9%", icon: <IconTrendingUp className="h-4 w-4" /> },
-        { label: "Integration Speed", value: "10x faster", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Productivity Gain", value: "+37%", icon: <IconUsers className="h-4 w-4" /> },
-        { label: "Revenue Growth", value: "+25%", icon: <IconCurrencyDollar className="h-4 w-4" /> }
-      ],
+      shortDescription: "Einstein AI connects all customer data in one smart platform",
+      mainBenefit: "Complete customer view",
+      resultNumber: "37%",
+      resultLabel: "productivity increase",
       image: "https://images.pexels.com/photos/17483869/pexels-photo-17483869.jpeg",
       link: "https://salesforce.com/einstein"
     }
@@ -221,24 +170,15 @@ const aiExamples: AIExample[] = [
   {
     id: "optimization",
     title: "Performance Optimization",
-    description: "AI-driven optimization for maximum efficiency and performance",
+    description: "AI-driven efficiency improvements",
     icon: <OptimizationIcon />,
     color: "green",
     realExample: {
       company: "Google",
-      scenario: "AI optimization reduced data center cooling costs by 40% and overall energy usage by 15% through intelligent system management.",
-      results: [
-        "Energy consumption optimization",
-        "Resource allocation",
-        "Performance monitoring",
-        "Predictive maintenance"
-      ],
-      metrics: [
-        { label: "Energy Savings", value: "40%", icon: <IconTrendingUp className="h-4 w-4" /> },
-        { label: "Cost Reduction", value: "15%", icon: <IconCurrencyDollar className="h-4 w-4" /> },
-        { label: "Efficiency Gain", value: "+30%", icon: <IconClock className="h-4 w-4" /> },
-        { label: "Data Centers", value: "100+", icon: <IconUsers className="h-4 w-4" /> }
-      ],
+      shortDescription: "AI reduced data center cooling costs automatically",
+      mainBenefit: "Smart energy savings",
+      resultNumber: "40%",
+      resultLabel: "energy cost reduction",
       image: "https://images.pexels.com/photos/577195/pexels-photo-577195.jpeg",
       link: "https://deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40"
     }
@@ -251,6 +191,14 @@ const colorClasses = {
   orange: "from-orange-500/20 to-amber-500/20 border-orange-500/30 text-orange-600",
   red: "from-red-500/20 to-rose-500/20 border-red-500/30 text-red-600",
   indigo: "from-indigo-500/20 to-blue-500/20 border-indigo-500/30 text-indigo-600"
+}
+
+const colorAccents = {
+  green: "text-green-500",
+  purple: "text-purple-500",
+  orange: "text-orange-500",
+  red: "text-red-500",
+  indigo: "text-indigo-500"
 }
 
 export default function InteractiveAIShowcase({ isDark }: { isDark: boolean }) {
@@ -502,159 +450,133 @@ export default function InteractiveAIShowcase({ isDark }: { isDark: boolean }) {
         </motion.div>
       </div>
 
-      {/* Modal for AI Examples */}
+      {/* Simplified Modal for AI Examples */}
       <AnimatePresence>
         {selectedExample && selectedAI && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={closeExample}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
               className={cn(
-                "max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border-2",
-                isDark ? "bg-gray-900 border-gray-800" : "bg-white border-gray-200"
+                "max-w-2xl w-full rounded-3xl border-2 overflow-hidden",
+                isDark ? "bg-gray-900 border-gray-700" : "bg-white border-gray-200"
               )}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative">
-                {/* Header */}
-                <div className="sticky top-0 z-10 p-6 border-b bg-inherit rounded-t-2xl">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className={cn(
-                        "p-3 rounded-xl",
-                        `bg-gradient-to-br ${colorClasses[selectedAI.color as keyof typeof colorClasses]}`
-                      )}>
-                        {selectedAI.icon}
-                      </div>
-                      <div>
-                        <h3 className={cn(
-                          "text-2xl font-bold",
-                          isDark ? "text-white" : "text-gray-900"
-                        )}>
-                          {selectedAI.title}
-                        </h3>
-                        <p className={cn(
-                          "text-sm mt-1",
-                          isDark ? "text-gray-400" : "text-gray-600"
-                        )}>
-                          {selectedAI.description}
-                        </p>
-                      </div>
+              {/* Visual Header with Image */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={selectedAI.realExample.image}
+                  alt={selectedAI.realExample.company}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                
+                {/* Close button */}
+                <button
+                  onClick={closeExample}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <IconX className="h-5 w-5" />
+                </button>
+
+                {/* Company logo/icon overlay */}
+                <div className="absolute bottom-4 left-4 flex items-center space-x-3">
+                  <div className={cn(
+                    "p-3 rounded-xl backdrop-blur-sm",
+                    `bg-gradient-to-br ${colorClasses[selectedAI.color as keyof typeof colorClasses]}`
+                  )}>
+                    {selectedAI.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-white text-xl font-bold">
+                      {selectedAI.title}
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      at {selectedAI.realExample.company}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-8 space-y-6">
+                {/* Main description */}
+                <div className="text-center">
+                  <p className={cn(
+                    "text-lg leading-relaxed",
+                    isDark ? "text-gray-300" : "text-gray-600"
+                  )}>
+                    {selectedAI.realExample.shortDescription}
+                  </p>
+                </div>
+
+                {/* Key benefit highlight */}
+                <div className={cn(
+                  "text-center p-6 rounded-2xl",
+                  isDark ? "bg-gray-800/50" : "bg-gray-50"
+                )}>
+                  <div className="flex items-center justify-center mb-3">
+                    <IconSparkles className={cn("h-6 w-6 mr-2", colorAccents[selectedAI.color as keyof typeof colorAccents])} />
+                    <span className={cn(
+                      "text-sm font-medium uppercase tracking-wide",
+                      colorAccents[selectedAI.color as keyof typeof colorAccents]
+                    )}>
+                      Main Benefit
+                    </span>
+                  </div>
+                  <h4 className={cn(
+                    "text-2xl font-bold mb-4",
+                    isDark ? "text-white" : "text-gray-900"
+                  )}>
+                    {selectedAI.realExample.mainBenefit}
+                  </h4>
+                  
+                  {/* Big result number */}
+                  <div className="flex flex-col items-center">
+                    <div className={cn(
+                      "text-5xl font-bold mb-2",
+                      colorAccents[selectedAI.color as keyof typeof colorAccents]
+                    )}>
+                      {selectedAI.realExample.resultNumber}
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={closeExample}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      <IconX className="h-5 w-5" />
-                    </Button>
+                    <div className={cn(
+                      "text-sm",
+                      isDark ? "text-gray-400" : "text-gray-600"
+                    )}>
+                      {selectedAI.realExample.resultLabel}
+                    </div>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6 space-y-6">
-                  {/* Company Example */}
-                  <Card className={cn(
-                    "overflow-hidden",
-                    isDark ? "bg-gray-800/50 border-gray-700" : "bg-gray-50 border-gray-200"
-                  )}>
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <CardTitle className={cn(
-                          "text-xl",
-                          isDark ? "text-white" : "text-gray-900"
-                        )}>
-                          Real Implementation: {selectedAI.realExample.company}
-                        </CardTitle>
-                        <a
-                          href={selectedAI.realExample.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(
-                            "p-2 rounded-lg transition-colors",
-                            isDark ? "hover:bg-gray-700" : "hover:bg-gray-200"
-                          )}
-                        >
-                          <IconExternalLink className="h-5 w-5" />
-                        </a>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-start space-x-4">
-                        <img
-                          src={selectedAI.realExample.image}
-                          alt={selectedAI.realExample.company}
-                          className="w-20 h-20 rounded-lg object-cover"
-                        />
-                        <div className="flex-1">
-                          <p className={cn(
-                            "text-sm leading-relaxed",
-                            isDark ? "text-gray-300" : "text-gray-600"
-                          )}>
-                            {selectedAI.realExample.scenario}
-                          </p>
-                        </div>
-                      </div>
+                {/* Simple success indicator */}
+                <div className="flex items-center justify-center space-x-2 text-green-500">
+                  <IconCheck className="h-5 w-5" />
+                  <span className="font-medium">Real implementation, proven results</span>
+                </div>
 
-                      {/* Metrics */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {selectedAI.realExample.metrics.map((metric, idx) => (
-                          <div key={idx} className={cn(
-                            "p-3 rounded-lg text-center",
-                            isDark ? "bg-gray-900/50" : "bg-white"
-                          )}>
-                            <div className="flex items-center justify-center mb-2">
-                              {metric.icon}
-                            </div>
-                            <div className={cn(
-                              "text-lg font-bold mb-1",
-                              isDark ? "text-white" : "text-gray-900"
-                            )}>
-                              {metric.value}
-                            </div>
-                            <div className="text-xs text-gray-500">
-                              {metric.label}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Results */}
-                      <div>
-                        <h4 className={cn(
-                          "font-semibold mb-3",
-                          isDark ? "text-white" : "text-gray-900"
-                        )}>
-                          Key Results & Benefits
-                        </h4>
-                        <div className="grid md:grid-cols-2 gap-2">
-                          {selectedAI.realExample.results.map((result, idx) => (
-                            <div key={idx} className="flex items-center text-sm">
-                              <IconTrendingUp className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                              <span className={isDark ? "text-gray-300" : "text-gray-600"}>
-                                {result}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* CTA */}
-                  <div className="text-center">
-                    <Button className="px-8 py-3">
-                      Implement This AI Solution
-                    </Button>
-                  </div>
+                {/* Action buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <Button 
+                    className="flex-1 h-12 text-base font-medium"
+                    onClick={() => window.open(selectedAI.realExample.link, '_blank')}
+                  >
+                    <IconExternalLink className="h-5 w-5 mr-2" />
+                    View Live Example
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="flex-1 h-12 text-base font-medium"
+                  >
+                    Get This AI Solution
+                  </Button>
                 </div>
               </div>
             </motion.div>
