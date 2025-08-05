@@ -222,7 +222,7 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className={cn(
                   "p-4 rounded-lg border",
-                  isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-300"
+                  isDark ? "border-gray-700" : "bg-white border-gray-300"
                 )}
               >
                 <SocialMediaMarquee isDark={isDark} />
