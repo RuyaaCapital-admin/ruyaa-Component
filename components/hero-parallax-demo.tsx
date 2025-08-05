@@ -99,9 +99,9 @@ export default function HeroParallaxDemo() {
       </div>
 
       {/* AI Case Studies Section */}
-      {/* <div className="relative z-30">
+      <div className="relative z-30">
         <AICaseStudies isDark={isDark} />
-      </div> */}
+      </div>
 
       {/* Visual AI Showcase Section */}
       <div className="relative z-30">
