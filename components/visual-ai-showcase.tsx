@@ -3,345 +3,136 @@ import { motion, useInView, AnimatePresence } from "motion/react"
 import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
-interface AIService {
+interface CaseStudy {
   id: string
-  title: string
-  subtitle: string
-  simpleExplanation: string
-  beforeScenario: {
+  headline: string
+  subheadline: string
+  industry: string
+  aiDescription: string
+  beforeMetrics: {
     title: string
-    visual: React.ReactNode
-    problems: string[]
-  }
-  afterScenario: {
+    value: string
+    description: string
+  }[]
+  afterMetrics: {
     title: string
-    visual: React.ReactNode
-    benefits: string[]
+    value: string
+    description: string
+  }[]
+  processFlow: {
+    before: string[]
+    after: string[]
   }
-  liveDemo: React.ReactNode
-  industryExample: string
   result: string
 }
 
-const ProcessingAnimation = ({ isDark }: { isDark: boolean }) => (
-  <div className="relative w-full h-32">
-    {/* Documents flowing */}
-    {[...Array(3)].map((_, i) => (
-      <motion.div
-        key={i}
-        className={cn(
-          "absolute w-8 h-10 rounded border-2",
-          isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"
-        )}
-        initial={{ x: -20, y: 20 + i * 15, opacity: 0 }}
-        animate={{ 
-          x: [0, 60, 120, 180],
-          opacity: [0, 1, 1, 0]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          delay: i * 0.5,
-          ease: "easeInOut"
-        }}
-      >
-        <div className={cn("w-full h-2 mt-2 mx-1 rounded", isDark ? "bg-gray-600" : "bg-gray-200")} />
-        <div className={cn("w-3/4 h-1.5 mt-1 mx-1 rounded", isDark ? "bg-gray-700" : "bg-gray-300")} />
-        <div className={cn("w-1/2 h-1.5 mt-1 mx-1 rounded", isDark ? "bg-gray-700" : "bg-gray-300")} />
-      </motion.div>
-    ))}
-    
-    {/* AI Processing Center */}
-    <div className={cn(
-      "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border-2 flex items-center justify-center",
-      isDark ? "bg-gray-900 border-gray-500" : "bg-gray-100 border-gray-400"
-    )}>
-      <motion.div
-        className={cn("w-8 h-8 rounded-full", isDark ? "bg-white" : "bg-black")}
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-    </div>
-    
-    {/* Results */}
-    <motion.div
-      className={cn(
-        "absolute right-4 top-8 w-12 h-12 rounded border-2 flex items-center justify-center",
-        isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"
-      )}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 2, duration: 0.5, repeat: Infinity, repeatDelay: 2.5 }}
-    >
-      <span className="text-lg">✓</span>
-    </motion.div>
-  </div>
-)
-
-const DataFlowAnimation = ({ isDark }: { isDark: boolean }) => (
-  <div className="relative w-full h-32">
-    {/* Data sources */}
-    {[...Array(4)].map((_, i) => (
-      <motion.div
-        key={i}
-        className={cn(
-          "absolute w-6 h-6 rounded-full",
-          isDark ? "bg-white" : "bg-black"
-        )}
-        style={{ left: `${i * 25}%`, top: '10%' }}
-        animate={{
-          y: [0, 40, 80],
-          scale: [1, 0.8, 0.6]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          delay: i * 0.3,
-          ease: "easeOut"
-        }}
-      />
-    ))}
-    
-    {/* Central AI brain */}
-    <div className={cn(
-      "absolute left-1/2 bottom-4 transform -translate-x-1/2 w-20 h-12 rounded-lg border-2 flex items-center justify-center",
-      isDark ? "bg-gray-900 border-gray-500" : "bg-gray-100 border-gray-400"
-    )}>
-      <motion.div
-        className="grid grid-cols-3 gap-1"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      >
-        {[...Array(9)].map((_, i) => (
-          <div key={i} className={cn("w-1 h-1 rounded-full", isDark ? "bg-white" : "bg-black")} />
-        ))}
-      </motion.div>
-    </div>
-    
-    {/* Insights */}
-    <motion.div
-      className={cn(
-        "absolute right-4 bottom-8 px-3 py-1 rounded text-xs",
-        isDark ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-      )}
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 1.5, duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-    >
-      Insights Ready
-    </motion.div>
-  </div>
-)
-
-const SystemIntegrationAnimation = ({ isDark }: { isDark: boolean }) => (
-  <div className="relative w-full h-32">
-    {/* Disconnected systems */}
-    {[...Array(3)].map((_, i) => (
-      <motion.div
-        key={i}
-        className={cn(
-          "absolute w-12 h-8 rounded border-2",
-          isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"
-        )}
-        style={{ 
-          left: `${10 + i * 30}%`, 
-          top: i % 2 === 0 ? '20%' : '60%' 
-        }}
-        animate={{
-          borderColor: isDark ? ['#4b5563', '#ffffff', '#4b5563'] : ['#d1d5db', '#000000', '#d1d5db']
-        }}
-        transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-      />
-    ))}
-    
-    {/* Connection lines */}
-    {[...Array(2)].map((_, i) => (
-      <motion.div
-        key={i}
-        className={cn("absolute h-0.5", isDark ? "bg-white" : "bg-black")}
-        style={{
-          left: '22%',
-          top: i === 0 ? '28%' : '68%',
-          right: '22%'
-        }}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ delay: 1 + i * 0.5, duration: 1, repeat: Infinity, repeatDelay: 2 }}
-      />
-    ))}
-    
-    {/* Central hub */}
-    <motion.div
-      className={cn(
-        "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-2",
-        isDark ? "bg-white border-gray-500" : "bg-black border-gray-400"
-      )}
-      animate={{ scale: [1, 1.1, 1] }}
-      transition={{ duration: 2, repeat: Infinity }}
-    />
-  </div>
-)
-
-const OptimizationAnimation = ({ isDark }: { isDark: boolean }) => (
-  <div className="relative w-full h-32">
-    {/* Resource blocks */}
-    {[...Array(5)].map((_, i) => (
-      <motion.div
-        key={i}
-        className={cn(
-          "absolute bottom-4 w-6 rounded-t",
-          isDark ? "bg-gray-600" : "bg-gray-400"
-        )}
-        style={{ 
-          left: `${20 + i * 15}%`,
-          height: `${30 + Math.random() * 40}px`
-        }}
-        animate={{
-          height: [`${30 + Math.random() * 40}px`, `${60 + Math.random() * 20}px`],
-          backgroundColor: isDark ? ['#4b5563', '#ffffff', '#4b5563'] : ['#9ca3af', '#000000', '#9ca3af']
-        }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity, 
-          delay: i * 0.2,
-          repeatDelay: 1
-        }}
-      />
-    ))}
-    
-    {/* Efficiency indicator */}
-    <motion.div
-      className={cn(
-        "absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold",
-        isDark ? "bg-white text-black" : "bg-black text-white"
-      )}
-      animate={{ scale: [1, 1.1, 1] }}
-      transition={{ duration: 1, repeat: Infinity, delay: 1 }}
-    >
-      +45% Efficiency
-    </motion.div>
-  </div>
-)
-
-const services: AIService[] = [
+const caseStudies: CaseStudy[] = [
   {
-    id: "automation",
-    title: "Process Automation",
-    subtitle: "Let AI Handle Repetitive Tasks",
-    simpleExplanation: "Think of it like having a super-fast assistant that never gets tired and can handle boring, repetitive work 24/7.",
-    beforeScenario: {
-      title: "Manual Work",
-      visual: <ProcessingAnimation isDark={false} />,
-      problems: ["Staff spending hours on data entry", "Human errors in processing", "Work piling up during busy periods"]
+    id: "construction",
+    headline: "AI-Driven Performance Optimization in Construction",
+    subheadline: "Transforming project delivery with real-time schedule and logistics AI",
+    industry: "Construction",
+    aiDescription: "AI optimized worker schedules and material delivery timing",
+    beforeMetrics: [
+      { title: "Average Completion", value: "8 weeks", description: "Per project build time" },
+      { title: "Project Delays", value: "23%", description: "Of projects over deadline" },
+      { title: "Idle Time", value: "18%", description: "Worker downtime daily" }
+    ],
+    afterMetrics: [
+      { title: "Average Completion", value: "4.5 weeks", description: "Per project build time" },
+      { title: "Project Delays", value: "5%", description: "Of projects over deadline" },
+      { title: "Productivity Boost", value: "+45%", description: "Site efficiency increase" }
+    ],
+    processFlow: {
+      before: ["Manual scheduling", "Delays", "Idle time"],
+      after: ["AI scheduling", "Just-in-time delivery", "Higher output"]
     },
-    afterScenario: {
-      title: "AI Automation",
-      visual: <ProcessingAnimation isDark={true} />,
-      benefits: ["AI processes 1000x faster", "Zero human errors", "Works 24/7 without breaks"]
-    },
-    liveDemo: <ProcessingAnimation isDark={true} />,
-    industryExample: "Real Estate: AI reads property documents, extracts key info, and updates listings automatically",
-    result: "Saves 12 hours/week per agent"
+    result: "45% boost in site productivity. Average completion time reduced by 43%"
   },
   {
-    id: "analytics",
-    title: "Predictive Analytics",
-    subtitle: "See What's Coming Before It Happens",
-    simpleExplanation: "Like having a crystal ball for your business - AI analyzes patterns to predict future trends and problems.",
-    beforeScenario: {
-      title: "Guessing",
-      visual: <DataFlowAnimation isDark={false} />,
-      problems: ["Making decisions based on gut feeling", "Surprised by sudden changes", "Missing opportunities"]
+    id: "healthcare",
+    headline: "AI-Powered Medical Records Integration",
+    subheadline: "Eliminating data silos with intelligent healthcare workflow automation",
+    industry: "Healthcare",
+    aiDescription: "AI unified patient records across 7 different medical systems",
+    beforeMetrics: [
+      { title: "Data Entry Time", value: "3.2 hours", description: "Per patient daily" },
+      { title: "Record Errors", value: "12%", description: "Manual entry mistakes" },
+      { title: "Patient Wait Time", value: "45 minutes", description: "Average appointment delay" }
+    ],
+    afterMetrics: [
+      { title: "Data Entry Time", value: "0.3 hours", description: "Per patient daily" },
+      { title: "Record Errors", value: "0.1%", description: "AI validation accuracy" },
+      { title: "Patient Wait Time", value: "8 minutes", description: "Average appointment delay" }
+    ],
+    processFlow: {
+      before: ["Manual data entry", "System switching", "Verification delays"],
+      after: ["Automated sync", "Real-time updates", "Instant access"]
     },
-    afterScenario: {
-      title: "AI Predictions",
-      visual: <DataFlowAnimation isDark={true} />,
-      benefits: ["Predict trends 2 weeks early", "Never miss opportunities", "Data-backed decisions"]
-    },
-    liveDemo: <DataFlowAnimation isDark={true} />,
-    industryExample: "Manufacturing: AI predicts when machines will break down before they actually do",
-    result: "Prevented $2.3M in equipment losses"
+    result: "89% reduction in data entry time. Zero data inconsistencies across systems"
   },
   {
-    id: "integration",
-    title: "System Integration",
-    subtitle: "Connect Everything Into One Smart System",
-    simpleExplanation: "Imagine all your different software tools talking to each other automatically, sharing information instantly.",
-    beforeScenario: {
-      title: "Disconnected",
-      visual: <SystemIntegrationAnimation isDark={false} />,
-      problems: ["Data scattered across different systems", "Manual copying between platforms", "Information delays"]
+    id: "manufacturing",
+    headline: "Predictive Maintenance AI for Industrial Equipment",
+    subheadline: "Preventing costly breakdowns with machine learning failure prediction",
+    industry: "Manufacturing",
+    aiDescription: "AI monitors equipment sensors and predicts failures 2-3 weeks in advance",
+    beforeMetrics: [
+      { title: "Unplanned Downtime", value: "127 hours", description: "Monthly equipment failures" },
+      { title: "Maintenance Cost", value: "$2.8M", description: "Annual emergency repairs" },
+      { title: "Production Loss", value: "23%", description: "Revenue impact from stops" }
+    ],
+    afterMetrics: [
+      { title: "Unplanned Downtime", value: "18 hours", description: "Monthly equipment failures" },
+      { title: "Maintenance Cost", value: "$0.9M", description: "Annual planned maintenance" },
+      { title: "Production Increase", value: "+31%", description: "Consistent output boost" }
+    ],
+    processFlow: {
+      before: ["Reactive repairs", "Surprise failures", "Production stops"],
+      after: ["Predictive alerts", "Planned maintenance", "Continuous operation"]
     },
-    afterScenario: {
-      title: "Connected",
-      visual: <SystemIntegrationAnimation isDark={true} />,
-      benefits: ["All systems work as one", "Instant data sharing", "No more manual copying"]
-    },
-    liveDemo: <SystemIntegrationAnimation isDark={true} />,
-    industryExample: "Healthcare: Patient info flows automatically between appointment system, billing, and medical records",
-    result: "Reduced data entry by 89%"
+    result: "Prevented $2.3M in equipment losses. 86% reduction in unexpected downtime"
   },
   {
-    id: "optimization",
-    title: "Performance Optimization",
-    subtitle: "Make Everything Work Better and Faster",
-    simpleExplanation: "AI finds the best way to do things - like having an efficiency expert that optimizes every process.",
-    beforeScenario: {
-      title: "Inefficient",
-      visual: <OptimizationAnimation isDark={false} />,
-      problems: ["Resources wasted on wrong priorities", "Slow processes", "High operational costs"]
+    id: "retail",
+    headline: "Inventory Optimization with Demand Forecasting AI",
+    subheadline: "Maximizing profit margins through intelligent stock management",
+    industry: "Retail",
+    aiDescription: "AI analyzes customer patterns and market trends to optimize inventory levels",
+    beforeMetrics: [
+      { title: "Inventory Turnover", value: "4.2x", description: "Annual stock rotation" },
+      { title: "Stockouts", value: "18%", description: "Products out of stock" },
+      { title: "Excess Inventory", value: "$890K", description: "Unsold merchandise cost" }
+    ],
+    afterMetrics: [
+      { title: "Inventory Turnover", value: "7.8x", description: "Annual stock rotation" },
+      { title: "Stockouts", value: "3%", description: "Products out of stock" },
+      { title: "Profit Margin", value: "+19%", description: "Improved through optimization" }
+    ],
+    processFlow: {
+      before: ["Gut feeling orders", "Overstocking", "Revenue loss"],
+      after: ["Data-driven purchasing", "Optimal stock levels", "Maximized sales"]
     },
-    afterScenario: {
-      title: "Optimized",
-      visual: <OptimizationAnimation isDark={true} />,
-      benefits: ["Resources used perfectly", "Processes run smoothly", "Costs minimized"]
-    },
-    liveDemo: <OptimizationAnimation isDark={true} />,
-    industryExample: "Construction: AI optimizes worker schedules and material delivery timing",
-    result: "45% productivity boost"
+    result: "19% increase in profit margins. Inventory turnover improved by 86%"
   }
 ]
 
 export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
-  const [activeService, setActiveService] = useState<string>(services[0].id)
-  const [showBeforeAfter, setShowBeforeAfter] = useState<boolean>(false)
+  const [activeCase, setActiveCase] = useState<string>(caseStudies[0].id)
+  const [showComparison, setShowComparison] = useState<boolean>(true)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
-  const activeServiceData = services.find(s => s.id === activeService) || services[0]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveService(prev => {
-        const currentIndex = services.findIndex(s => s.id === prev)
-        const nextIndex = (currentIndex + 1) % services.length
-        return services[nextIndex].id
-      })
-    }, 8000)
-
-    return () => clearInterval(interval)
-  }, [])
+  const activeCaseData = caseStudies.find(c => c.id === activeCase) || caseStudies[0]
 
   return (
     <section 
       ref={ref}
       className={cn(
-        "py-20 md:py-32 px-4 relative overflow-hidden",
-        isDark ? "bg-black" : "bg-white"
+        "py-20 md:py-32 px-4 relative",
+        isDark ? "bg-black" : "bg-gray-50"
       )}
     >
-      {/* Futuristic grid background */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'} 1px, transparent 1px),
-            linear-gradient(90deg, ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'} 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
-
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -354,202 +145,257 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
             "text-3xl md:text-5xl lg:text-6xl font-bold mb-6",
             isDark ? "text-white" : "text-gray-900"
           )}>
-            See AI In Action
+            Real AI Results
           </h2>
           <p className={cn(
-            "text-lg md:text-xl max-w-3xl mx-auto mb-8",
+            "text-lg md:text-xl max-w-3xl mx-auto",
             isDark ? "text-gray-300" : "text-gray-600"
           )}>
-            Watch how AI transforms everyday business tasks into automated, intelligent processes.
+            Measurable outcomes from actual client implementations
           </p>
-          
-          {/* Before/After Toggle */}
-          <motion.button
-            onClick={() => setShowBeforeAfter(!showBeforeAfter)}
-            className={cn(
-              "px-6 py-3 rounded-lg font-medium transition-all duration-200",
-              isDark 
-                ? "bg-gray-800 text-white hover:bg-gray-700 border border-gray-600" 
-                : "bg-gray-100 text-black hover:bg-gray-200 border border-gray-300"
-            )}
-          >
-            {showBeforeAfter ? "Hide" : "Show"} Before vs After
-          </motion.button>
         </motion.div>
 
-        {/* Service Tabs */}
+        {/* Case Study Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {services.map((service) => (
+          {caseStudies.map((caseStudy) => (
             <button
-              key={service.id}
-              onClick={() => setActiveService(service.id)}
+              key={caseStudy.id}
+              onClick={() => setActiveCase(caseStudy.id)}
               className={cn(
                 "px-6 py-3 rounded-lg font-medium transition-all duration-200",
-                activeService === service.id
+                activeCase === caseStudy.id
                   ? isDark 
-                    ? "bg-white text-black" 
-                    : "bg-black text-white"
+                    ? "bg-white text-black shadow-lg" 
+                    : "bg-black text-white shadow-lg"
                   : isDark 
-                    ? "bg-gray-800 text-gray-300 hover:bg-gray-700" 
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700" 
+                    : "bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 shadow-sm"
               )}
             >
-              {service.title}
+              {caseStudy.industry}
             </button>
           ))}
         </motion.div>
 
-        {/* Main Content Area */}
+        {/* Main Case Study Card */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeService}
+            key={activeCase}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16"
+            className={cn(
+              "rounded-lg border shadow-xl overflow-hidden",
+              isDark 
+                ? "bg-gray-900 border-gray-700" 
+                : "bg-white border-gray-200"
+            )}
           >
-            {/* Left: Explanation */}
-            <div>
+            {/* Header */}
+            <div className={cn(
+              "p-8 border-b",
+              isDark ? "border-gray-700" : "border-gray-200"
+            )}>
               <h3 className={cn(
-                "text-2xl md:text-3xl font-bold mb-4",
+                "text-2xl md:text-3xl font-bold mb-2",
                 isDark ? "text-white" : "text-gray-900"
               )}>
-                {activeServiceData.title}
+                {activeCaseData.headline}
               </h3>
               <p className={cn(
-                "text-lg mb-6",
-                isDark ? "text-gray-400" : "text-gray-600"
+                "text-lg mb-4",
+                isDark ? "text-gray-300" : "text-gray-600"
               )}>
-                {activeServiceData.subtitle}
+                {activeCaseData.subheadline}
               </p>
-              <p className={cn(
-                "text-base mb-8 p-4 rounded-lg",
-                isDark ? "bg-gray-800 text-gray-300" : "bg-gray-50 text-gray-700"
-              )}>
-                {activeServiceData.simpleExplanation}
-              </p>
-              
               <div className={cn(
-                "p-4 rounded-lg border-l-4",
-                isDark ? "bg-gray-900 border-gray-600" : "bg-gray-50 border-gray-400"
+                "inline-block px-4 py-2 rounded-lg text-sm font-medium",
+                isDark 
+                  ? "bg-gray-800 text-gray-300 border border-gray-600" 
+                  : "bg-gray-100 text-gray-700 border border-gray-300"
               )}>
-                <p className={cn("text-sm mb-2", isDark ? "text-gray-300" : "text-gray-600")}>
-                  {activeServiceData.industryExample}
-                </p>
-                <p className={cn("font-semibold", isDark ? "text-white" : "text-black")}>
-                  Result: {activeServiceData.result}
-                </p>
+                Industry: {activeCaseData.industry}. {activeCaseData.aiDescription}
               </div>
             </div>
 
-            {/* Right: Visual Demo */}
-            <div className={cn(
-              "relative p-8 rounded-lg border-2",
-              isDark ? "bg-gray-900 border-gray-700" : "bg-gray-50 border-gray-200"
-            )}>
-              <h4 className={cn(
-                "text-lg font-semibold mb-4 text-center",
-                isDark ? "text-white" : "text-gray-900"
+            {/* Before/After Comparison */}
+            <div className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                {/* Before */}
+                <div className={cn(
+                  "p-6 rounded-lg border",
+                  isDark 
+                    ? "bg-gray-800 border-gray-600" 
+                    : "bg-gray-50 border-gray-300"
+                )}>
+                  <h4 className={cn(
+                    "text-xl font-bold mb-4 text-center",
+                    isDark ? "text-gray-300" : "text-gray-700"
+                  )}>
+                    Before (Manual)
+                  </h4>
+                  <div className="space-y-4">
+                    {activeCaseData.beforeMetrics.map((metric, index) => (
+                      <div key={index} className="text-center">
+                        <div className={cn(
+                          "text-2xl font-bold mb-1",
+                          isDark ? "text-gray-200" : "text-gray-800"
+                        )}>
+                          {metric.value}
+                        </div>
+                        <div className={cn(
+                          "text-sm font-medium mb-1",
+                          isDark ? "text-gray-300" : "text-gray-600"
+                        )}>
+                          {metric.title}
+                        </div>
+                        <div className={cn(
+                          "text-xs",
+                          isDark ? "text-gray-400" : "text-gray-500"
+                        )}>
+                          {metric.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* After */}
+                <div className={cn(
+                  "p-6 rounded-lg border",
+                  isDark 
+                    ? "bg-gray-700 border-gray-600" 
+                    : "bg-white border-gray-300 shadow-lg"
+                )}>
+                  <h4 className={cn(
+                    "text-xl font-bold mb-4 text-center",
+                    isDark ? "text-white" : "text-gray-900"
+                  )}>
+                    After (With AI)
+                  </h4>
+                  <div className="space-y-4">
+                    {activeCaseData.afterMetrics.map((metric, index) => (
+                      <div key={index} className="text-center">
+                        <div className={cn(
+                          "text-2xl font-bold mb-1",
+                          isDark ? "text-white" : "text-black"
+                        )}>
+                          {metric.value}
+                        </div>
+                        <div className={cn(
+                          "text-sm font-medium mb-1",
+                          isDark ? "text-gray-200" : "text-gray-700"
+                        )}>
+                          {metric.title}
+                        </div>
+                        <div className={cn(
+                          "text-xs",
+                          isDark ? "text-gray-300" : "text-gray-500"
+                        )}>
+                          {metric.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Process Flow */}
+              <div className={cn(
+                "p-6 rounded-lg border mb-6",
+                isDark 
+                  ? "bg-gray-800 border-gray-600" 
+                  : "bg-gray-50 border-gray-200"
               )}>
-                Live Demo
-              </h4>
-              {activeServiceData.liveDemo}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h5 className={cn(
+                      "font-semibold mb-3",
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    )}>
+                      Manual Process:
+                    </h5>
+                    <div className="flex items-center space-x-2">
+                      {activeCaseData.processFlow.before.map((step, index) => (
+                        <div key={index} className="flex items-center">
+                          <span className={cn(
+                            "text-sm px-3 py-1 rounded",
+                            isDark ? "bg-gray-700 text-gray-300" : "bg-gray-200 text-gray-600"
+                          )}>
+                            {step}
+                          </span>
+                          {index < activeCaseData.processFlow.before.length - 1 && (
+                            <span className={cn("mx-2", isDark ? "text-gray-500" : "text-gray-400")}>
+                              →
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className={cn(
+                      "font-semibold mb-3",
+                      isDark ? "text-white" : "text-gray-900"
+                    )}>
+                      AI Process:
+                    </h5>
+                    <div className="flex items-center space-x-2">
+                      {activeCaseData.processFlow.after.map((step, index) => (
+                        <div key={index} className="flex items-center">
+                          <span className={cn(
+                            "text-sm px-3 py-1 rounded",
+                            isDark ? "bg-gray-600 text-white" : "bg-gray-800 text-white"
+                          )}>
+                            {step}
+                          </span>
+                          {index < activeCaseData.processFlow.after.length - 1 && (
+                            <span className={cn("mx-2", isDark ? "text-gray-400" : "text-gray-600")}>
+                              →
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Result Summary */}
+              <div className={cn(
+                "p-6 rounded-lg border-l-4 mb-6",
+                isDark 
+                  ? "bg-gray-800 border-gray-500" 
+                  : "bg-gray-50 border-gray-600"
+              )}>
+                <p className={cn(
+                  "text-lg font-semibold",
+                  isDark ? "text-white" : "text-gray-900"
+                )}>
+                  {activeCaseData.result}
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className="text-center">
+                <button className={cn(
+                  "px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:scale-105 shadow-lg",
+                  isDark 
+                    ? "bg-white text-black hover:bg-gray-100" 
+                    : "bg-black text-white hover:bg-gray-900"
+                )}>
+                  See Full Case Study
+                </button>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
-
-        {/* Before/After Comparison */}
-        <AnimatePresence>
-          {showBeforeAfter && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
-            >
-              {/* Before */}
-              <div className={cn(
-                "p-8 rounded-lg border-2",
-                isDark ? "bg-gray-900 border-gray-700" : "bg-gray-50 border-gray-200"
-              )}>
-                <h4 className={cn(
-                  "text-xl font-bold mb-4 text-center",
-                  isDark ? "text-gray-300" : "text-gray-700"
-                )}>
-                  {activeServiceData.beforeScenario.title}
-                </h4>
-                <div className="mb-6">
-                  <ProcessingAnimation isDark={false} />
-                </div>
-                <ul className="space-y-2">
-                  {activeServiceData.beforeScenario.problems.map((problem, index) => (
-                    <li key={index} className={cn(
-                      "flex items-center text-sm",
-                      isDark ? "text-gray-400" : "text-gray-600"
-                    )}>
-                      <span className="w-2 h-2 bg-red-500 rounded-full mr-3" />
-                      {problem}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* After */}
-              <div className={cn(
-                "p-8 rounded-lg border-2",
-                isDark ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"
-              )}>
-                <h4 className={cn(
-                  "text-xl font-bold mb-4 text-center",
-                  isDark ? "text-white" : "text-gray-900"
-                )}>
-                  {activeServiceData.afterScenario.title}
-                </h4>
-                <div className="mb-6">
-                  {activeServiceData.liveDemo}
-                </div>
-                <ul className="space-y-2">
-                  {activeServiceData.afterScenario.benefits.map((benefit, index) => (
-                    <li key={index} className={cn(
-                      "flex items-center text-sm",
-                      isDark ? "text-gray-300" : "text-gray-700"
-                    )}>
-                      <span className={cn(
-                        "w-2 h-2 rounded-full mr-3",
-                        isDark ? "bg-white" : "bg-black"
-                      )} />
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <button className={cn(
-            "px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:scale-105",
-            isDark 
-              ? "bg-white text-black hover:bg-gray-100" 
-              : "bg-black text-white hover:bg-gray-900"
-          )}>
-            Start Your AI Transformation
-          </button>
-        </motion.div>
       </div>
     </section>
   )
