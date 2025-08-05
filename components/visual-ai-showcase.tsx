@@ -1,4 +1,5 @@
 "use client"
+import React from "react"
 import { motion, useInView, AnimatePresence } from "motion/react"
 import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
