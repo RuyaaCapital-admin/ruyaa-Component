@@ -3,6 +3,7 @@ import { HeroParallax } from "@/components/ui/hero-parallax"
 import { FloatingDock } from "@/components/ui/floating-dock"
 import { LampDemo } from "@/components/ui/lamp"
 import IndustriesSection from "@/components/industries-section"
+import ServiceShowcaseSection from "@/components/service-showcase-section"
 // Removed CustomButtonSection import
 import SocialButtons from "@/components/social-buttons"
 
