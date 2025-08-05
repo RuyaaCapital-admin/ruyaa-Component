@@ -238,10 +238,7 @@ const WebsiteSupportDemo = ({ isDark }: { isDark: boolean }) => {
       </motion.div>
 
       {/* Activity Display */}
-      <div className={cn(
-        "absolute top-0 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded text-xs text-center",
-        isDark ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-      )}>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded text-xs text-center bg-purple-600 text-white">
         {activities[activity]}
       </div>
     </div>
