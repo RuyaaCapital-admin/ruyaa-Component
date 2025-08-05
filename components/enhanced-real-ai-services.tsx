@@ -958,6 +958,16 @@ export default function EnhancedRealAIServices({ isDark }: { isDark: boolean }) 
           ))}
         </div>
 
+        {/* AI Metrics Dashboard */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16"
+        >
+          <AIMetricsDashboard isDark={isDark} />
+        </motion.div>
+
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
