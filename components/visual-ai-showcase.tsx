@@ -500,14 +500,15 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
                   {aiServices[activeService].results.map((result, index) => (
                     <div
                       key={index}
-                      className={cn(
-                        "p-4 rounded-lg border-l-4",
-                        isDark ? "bg-gray-800 border-gray-500" : "bg-gray-50 border-gray-600"
-                      )}
+                      className="p-4 rounded-lg border-l-4 text-white font-semibold"
+                      style={{
+                        backgroundColor: "rgba(0, 0, 0, 0)",
+                        border: index === 0 ? "1px ridge rgba(43, 43, 43, 1)" : undefined,
+                        borderLeftWidth: "4px",
+                        marginBottom: index < aiServices[activeService].results.length - 1 ? "16px" : undefined
+                      }}
                     >
-                      <div className={cn("font-semibold", isDark ? "text-white" : "text-gray-900")}>
-                        {result}
-                      </div>
+                      {result}
                     </div>
                   ))}
                 </div>
