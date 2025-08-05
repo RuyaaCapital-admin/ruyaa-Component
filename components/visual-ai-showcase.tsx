@@ -135,8 +135,8 @@ export default function VisualAIShowcase({ isDark }: { isDark: boolean }) {
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
           className={cn(
-            "relative mb-16 p-8 rounded-2xl",
-            isDark ? "bg-gray-900 border border-gray-800" : "bg-white border border-gray-200"
+            "relative mb-16 p-8 rounded-2xl border",
+            isDark ? "border-gray-800" : "bg-white border-gray-200"
           )}
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
